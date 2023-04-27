@@ -13,6 +13,7 @@ jobs:
     - name: Download and Extract Code
       run: |
         mkdir /tmp/code
+        chmod 777 /tmp/code
         curl -L ${{ github.event.inputs.link }}  -o /tmp/code
         #unzip code.zip -d /tmp/code
     - name: Update Code in Repository
