@@ -1,33 +1,32 @@
-name: Update Code
+name: create a mirror of website and zip the saved contents
+
 on:
-  workflow_dispatch:
-    inputs:
-      link:
-        description: 'Link to Zip File'
-        required: true
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
-  update_code:
+  mirror-website:
+    name: mirrors the website
     runs-on: ubuntu-latest
     steps:
-    - name: Download and Extract Code
-      run: |
-        #mkdir /tmp/code
-        #chmod 777 /tmp/code
-        curl -L ${{ github.event.inputs.link }}  -o /tmp/code
-        #unzip code.zip -d /tmp/code
-    - name: Update Code in Repository
+    - name: Checkout Code
       uses: actions/checkout@v2
+
+    - name: wget
+      uses: wei/wget@v1
       with:
-        ref: main # replace with the name of the branch you want to update
-    - name: Remove Old Code
-      run: |
-        rm -rf ./*
-    - name: Copy New Code
-      run: |
-        cp  /tmp/code/* .
-    - name: Add New Code
-      run: |
-        git add .
-        git commit -m "Update code from ${{ github.event.inputs.link }}"
-        git push
+        args: -O logfile.txt -P ./actions/ https://gabriels-fantabulous-site-23ac8b.webflow.io
+
+  zip-files:
+    name: Zips the Saved file
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v2
+
+    - name: Prepares a zip file
+      uses: montudor/action-zip@v1.0.0
+      with:
+        args: zip -qq -r adappt_co_uk.zip . -i /actions/gabriels-fantabulous-site-23ac8b.webflow.io
