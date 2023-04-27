@@ -1,0 +1,31 @@
+name: Update Code
+on:
+  workflow_dispatch:
+    inputs:
+      link:
+        description: 'Link to Zip File'
+        required: true
+
+jobs:
+  update_code:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Download and Extract Code
+      run: |
+        curl -L ${{ github.event.inputs.link }}  -o /tmp/code
+        #unzip code.zip -d /tmp/code
+    - name: Update Code in Repository
+      uses: actions/checkout@v2
+      with:
+        ref: main # replace with the name of the branch you want to update
+    - name: Remove Old Code
+      run: |
+        rm -rf ./*
+    - name: Copy New Code
+      run: |
+        cp -r /tmp/code/* .
+    - name: Add New Code
+      run: |
+        git add .
+        git commit -m "Update code from ${{ github.event.inputs.link }}"
+        git push
