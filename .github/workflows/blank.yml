@@ -25,7 +25,7 @@ jobs:
         cp -r /tmp/code/gabriels-fantabulous-site-23ac8b.webflow.io/* . 
     - name: Set Git user name and email
       run: |
-        git config --global user.email "gabriel.ungureanu@khamelia.com"
+        git config --global user.email "gabe.ungureanu@outlook.com"
         git config --global user.name "Gabriel"
     - name: Add New Code
       run: |
