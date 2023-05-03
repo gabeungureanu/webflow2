@@ -23,6 +23,7 @@ for link in links:
         response = requests.get(src,stream=True)        
         # Construct the full path to save the file
         filename = os.path.basename(src)
+        #file_path = os.path.join('C:\\Users\\JAI SINGH\\', filename)
         file_path = os.path.join(folder, filename)
         
         # Save the SVG file to the specified folder
