@@ -7,7 +7,7 @@ env:
 
 jobs:
   hello-world:
-    name: Hello world
+    name: Parse Images
     runs-on: ubuntu-latest
     steps:
     - name: Check-out devops repository
@@ -17,6 +17,6 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         path: ${{ env.DEVOPS_DIR }}
 
-    - name: Hello World
+    - name: Parse Images
       run: python ./imagefromurl.py
       shell: sh
