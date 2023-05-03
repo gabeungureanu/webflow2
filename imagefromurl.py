@@ -1,42 +1,39 @@
-import urllib.request, urllib.parse, urllib.error
-from bs4 import BeautifulSoup
-import ssl
 import requests
-import shutil # to save it locally
-from urllib.request import urlopen, Request
+from bs4 import BeautifulSoup
+from PIL import Image
+import os
 
-ctx = ssl.create_default_context()
-ctx.check_hostname = False
-ctx.verify_mode = ssl.CERT_NONE
+# url_link = input('Enter the Url:')
+r = requests.get('https://gabriels-fantabulous-site-23ac8b.webflow.io/')
 
-headers = {'User-Agent': 'Mozilla/5.0'}
-url = "https://gabriels-fantabulous-site-23ac8b.webflow.io/"
-req = Request(url=url, headers=headers)
-html = urlopen(req).read()
-soup = BeautifulSoup(html,'html.parser')
-tags = soup('img')
+soup_obj = BeautifulSoup(r.text,"lxml")
+links = soup_obj.findAll('img')
+
 i = 1
-for tag in tags:
-    # Set up the image URL and filenameht
-    image_url = tag.get('src',None)
-    # print(image_url)
-    filename = "image" + str(i) + ".jpeg"
-    # Open the url image, set stream to True, this will return the stream content.
+
+for link in links:
     try:
-        r = requests.get(image_url, stream = True)
+        src=link['src']
+        print(src)
+        folder = "./images/"
+        # Make sure the folder exists
+        if not os.path.exists(folder):
+            os.makedirs(folder)
+
+        response = requests.get(src,stream=True)        
+        # Construct the full path to save the file
+        filename = os.path.basename(src)
+        file_path = os.path.join(folder, filename)
+        
+        # Save the SVG file to the specified folder
+        with open(file_path, "wb") as f:
+            f.write(response.content)
+            
+        #img=Image.open(response.raw)
+        #for j in range(0,10):
+            #img.save('C:\\Users\\JAI SINGH\\image{}.svg'.format(i))
+            #cv.SaveImage('pic{:>05}.jpg'.format(i), j) 
     except:
-        pos = image_url.find("http")
-        image_url = image_url[pos:]
-        r = requests.get(image_url, stream = True)
-
-    # Check if the image was retrieved successfully
-    if r.status_code == 200:
-        # Set decode_content value to True, otherwise the downloaded image file's size will be zero.
-        r.raw.decode_content = True
-
-        # Open a local file with wb ( write binary ) permission.
-        with open(filename,'wb') as f:
-            shutil.copyfileobj(r.raw, f)        
-    else:
-        print('Image Couldn\'t be retreived')
+        print(KeyError)
     i += 1
+
