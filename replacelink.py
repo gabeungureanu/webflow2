@@ -9,7 +9,7 @@ import re
 url = 'https://api.github.com/repos/gabeungureanu/webflow2/contents/index.html'
 headers = {
     "Accept": "application/vnd.github.v3+json",
-    "Authorization": "Bearer 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"
+    "Authorization": "Bearer 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"
 }
 
 response = requests.get(url, headers=headers)
