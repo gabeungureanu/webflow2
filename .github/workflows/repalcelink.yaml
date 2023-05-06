@@ -18,9 +18,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install requests beautifulsoup4 lxml Pillow
       
-    - name: Run script
-      env:
-          SOME_SECRET: ${{ secrets.SOME_SECRET }}
+    - name: Run script      
       run: python replacelink.py
       
     - name: Set Git user name and email
