@@ -8,7 +8,7 @@ import json
 url = 'https://api.github.com/repos/gabeungureanu/webflow2/contents/index.html'
 headers = {
     "Accept": "application/vnd.github.v3+json",
-    "Authorization": "Bearer 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"
+    "Authorization": "Bearer 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"
 }
 
 response = requests.get(url, headers=headers)
