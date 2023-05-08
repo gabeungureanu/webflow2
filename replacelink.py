@@ -3,7 +3,7 @@ import base64
 
 # Set up authentication credentials
 user = 'gabeungureanu'
-token = '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'
+token = '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'
 headers = {'Authorization': f'token {token}'}
 
 
