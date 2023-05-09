@@ -60,6 +60,7 @@ folder = "./js/"
 if not os.path.exists(folder):
         os.makedirs(folder)
 
+
 for js_file in script_files:
      fileName = os.path.basename(js_file)
      file_path = os.path.join(folder, fileName)
@@ -71,18 +72,21 @@ for js_file in script_files:
 css_files = []
 
 for css in soup.find_all("link"):
-    if css.attrs.get("href"):
-        # if the link tag has the 'href' attribute
-        css_url = css.attrs.get("href")
-        css_files.append(css_url)
-    
-    folder = "./css/"
+         if css.attrs.get("href"):
+            # if the link tag has the 'href' attribute
+            css_url = css.attrs.get("href")
+            if css_url.find('css') >= 1:   
+             css_files.append(css_url)
+
+folder = "./css/"
             # Make sure the folder exists
-    if not os.path.exists(folder):
+if not os.path.exists(folder):
         os.makedirs(folder)
 
+css_files.append('https://uploads-ssl.webflow.com/63ff41bea75a049e418bbd55/css/normalize.css')
+css_files.append('https://uploads-ssl.webflow.com/63ff41bea75a049e418bbd55/css/webflow.css')
 
-    for css_file in css_files:     
+for css_file in css_files:     
      fileName = os.path.basename(css_file)
      file_path = os.path.join(folder, fileName)
      text = requests.get(js_file).text
