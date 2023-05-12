@@ -4,7 +4,7 @@ import os
 
 
 # url_link = input('Enter the Url:')
-url ='https://gabriels-fantabulous-site-23ac8b.webflow.io/'
+url ='https://safelite.webflow.io/'
 r = requests.get(url)
     
 soup = BeautifulSoup(r.text,"lxml")
