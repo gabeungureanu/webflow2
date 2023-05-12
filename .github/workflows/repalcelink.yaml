@@ -13,8 +13,8 @@ jobs:
       uses: actions/checkout@v2
     - name: Edit image URL
       run: |
-        sed -i 's|https://uploads-ssl.webflow.com/63ff41bea75a049e418bbd55|/images|g' index.html
-        sed -i 's|https://uploads-ssl.webflow.com/63ff41bea75a04f76f8bbd7a|/images|g' index.html
+        sed -i 's|https://assets.website-files.com/6271d7fa721c60a64d063ed1|/images|g' index.html
+        -sed -i 's|https://uploads-ssl.webflow.com/63ff41bea75a04f76f8bbd7a|/images|g' index.html
     - name: Set Git user name and email
       run: |
           git config --global user.email "gabe.ungureanu@outlook.com"
