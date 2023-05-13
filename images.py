@@ -9,7 +9,6 @@ r = requests.get(url)
     
 soup = BeautifulSoup(r.text,"lxml")
 
-
 links = soup.findAll('img')
 i = 1
 
@@ -70,11 +69,10 @@ for js_file in script_files:
 
     # get the CSS files
 css_files = []
+css_files = []
 url ='https://assets.website-files.com/'
 r = requests.get(url)
-    
-soup = BeautifulSoup(r.text,"lxml")
-    
+
 for css in soup.find_all("link"):
          if css.attrs.get("href"):
             # if the link tag has the 'href' attribute
@@ -86,6 +84,9 @@ folder = "./css/"
             # Make sure the folder exists
 if not os.path.exists(folder):
         os.makedirs(folder)
+
+#css_files.append('https://uploads-ssl.webflow.com/63ff41bea75a049e418bbd55/css/normalize.css')
+#css_files.append('https://uploads-ssl.webflow.com/63ff41bea75a049e418bbd55/css/webflow.css')
 
 for css_file in css_files:     
      fileName = os.path.basename(css_file)
