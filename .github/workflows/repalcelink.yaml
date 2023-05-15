@@ -12,8 +12,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
     - name: Edit image URL
-      run: |
-        #sed -i 's|https://assets.website-files.com/6271d7fa721c60a64d063ed1|/images|g' index.html 
+      run: |        
         find . -name '*.html' -exec sed -i 's|https://assets.website-files.com/6271d7fa721c60a64d063ed1|/images|g' {} +
     - name: Set Git user name and email
       run: |
@@ -25,6 +24,7 @@ jobs:
           git status
           git add .
           git commit -m "Update link"
+          git diff-index --quiet HEAD || git commit -m "Replace image paths in HTML files"
           git push origin main
 
  
