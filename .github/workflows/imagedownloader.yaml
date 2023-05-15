@@ -9,12 +9,15 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+
       - name: Download files
         run: |
           # Create a directory for images
           mkdir -p images
+
           # Download all images
-          wget --recursive --no-parent --no-host-directories --cut-dirs=1 --accept=svg --directory-prefix=images https://safelite.webflow.io
+          wget --recursive --no-parent --no-host-directories --cut-dirs=1 --accept=svg,jpeg,png,gif --directory-prefix=images https://safelite.webflow.io/
+
       - name: Commit changes
         run: |
           git config --global user.name "Gabriel"
