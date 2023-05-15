@@ -12,9 +12,12 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
     - name: Replace CSS and JS URLs in HTML files      
+      run: |          
+          find . -name '*.html' -exec sed -i 's|https://assets.website-files.com/6271d7fa721c60a64d063ed1/css|/css|g' {} +
+          find . -name '*.html' -exec sed -i 's|https://assets.website-files.com/6271d7fa721c60a64d063ed1/js|/js|g' {} +
+    - name: Replace image URLs in HTML files
       run: |
-          find . -name '*.html' -type f -print0 | xargs -0 sed -i 's#https://assets.website-files.com/6271d7fa721c60a64d063ed1/css/#/css/#g'
-          find . -name '*.html' -type f -print0 | xargs -0 sed -i 's#https://assets.website-files.com/6271d7fa721c60a64d063ed1/js/#/js/#g'
+           find . -name '*.html' -exec sed -i 's|https://assets.website-files.com/6271d7fa721c60a64d063ed1|/images|g' {} +
     - name: Set Git user name and email
       run: |
           git config --global user.email "gabe.ungureanu@outlook.com"
