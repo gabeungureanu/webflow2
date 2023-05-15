@@ -16,18 +16,12 @@ jobs:
           mkdir -p images
 
           # Download all images
-          wget -r -np -nH --cut-dirs=1 -A svg https://safelite.webflow.io/
-
-          # Move images to the images directory
-          find . -type f \( -iname "*.svg" \) -exec mv {} images/ \;
+          wget --recursive --no-parent --no-host-directories --cut-dirs=1 --accept=svg --directory-prefix=images https://safelite.webflow.io
 
       - name: Commit changes
         run: |
-          git config --global user.email "gabe.ungureanu@outlook.com"
           git config --global user.name "Gabriel"
-      - name: Add New Code
-        run: |
-          git status
+          git config --global user.email "gabe.ungureanu@outlook.com"
           git add images/
-          git commit -m "test2"
-          git push origin main          
+          git commit -m "Add images"
+          git push
