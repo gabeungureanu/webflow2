@@ -12,7 +12,7 @@ jobs:
     steps:
     - name: Download File
       run: |
-        wget -P /tmp/code --recursive --page-requisites --adjust-extension --convert-links --no-parent ${{ github.event.inputs.link }}
+        wget -P /tmp/code --recursive --page-requisites --adjust-extension --convert-links --no-parent -i safelite-sitemap.yaml
     - name: Update Code in Repository
       uses: actions/checkout@v2
       with:
