@@ -1,33 +1,30 @@
 name: Download Images
-on: [push]
-
+on:
+  push:
+    branches:
+      - main # Replace with your default branch
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-      
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.x'
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install requests beautifulsoup4 lxml Pillow
-      
-    - name: Run script
-      run: python images.py
-      
-    - name: Set Git user name and email
-      run: |
-        git config --global user.email "gabe.ungureanu@outlook.com"
-        git config --global user.name "Gabriel"
-    - name: Add New Code
-      run: |
-        git status
-        git add .
-        git commit -m "test33"
-        git push origin main 
+      - name: Download files
+        run: |
+          # Create a directory for images
+          mkdir -p images
+
+          # Download all images
+          wget -r -np -nH --cut-dirs=1 -A svg https://safelite.webflow.io/
+
+          # Move images to the images directory
+          find . -type f \( -iname "*.svg" \) -exec mv {} images/ \;
+
+      - name: Commit changes
+        run: |
+          git config --global user.name "Gabriel"
+          git config --global user.email "gabe.ungureanu@outlook.com"
+          git add images/
+          git commit -m "Add images"
+          git push
