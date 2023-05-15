@@ -23,8 +23,7 @@ for link in links:
 
             response = requests.get(src,stream=True)        
             # Construct the full path to save the file
-            filename = os.path.basename(src)
-            #file_path = os.path.join('C:\\Users\\JAI SINGH\\', filename)
+            filename = os.path.basename(src)           
             file_path = os.path.join(folder, filename)
             
             # Update the src path
@@ -33,11 +32,6 @@ for link in links:
             # Save the SVG file to the specified folder
             with open(file_path, "wb") as f:
                 f.write(response.content)
-                
-            #img=Image.open(response.raw)
-            #for j in range(0,10):
-                #img.save('C:\\Users\\JAI SINGH\\image{}.svg'.format(i))
-                #cv.SaveImage('pic{:>05}.jpg'.format(i), j) 
         except:
             #print(KeyError)
             val=1
@@ -69,24 +63,25 @@ for js_file in script_files:
 
     # get the CSS files
 css_files = []
-css_files = []
-url ='https://assets.website-files.com/'
-r = requests.get(url)
 
-for css in soup.find_all("link"):
-         if css.attrs.get("href"):
-            # if the link tag has the 'href' attribute
-            css_url = css.attrs.get("href")
-            if css_url.find('css') >= 1:   
-             css_files.append(css_url)
+# url ='https://assets.website-files.com/'
+# r = requests.get(url)
+
+# for css in soup.find_all("link"):
+#          if css.attrs.get("href"):
+#             # if the link tag has the 'href' attribute
+#             css_url = css.attrs.get("href")
+#             if css_url.find('css') >= 1:   
+#              css_files.append(css_url)
 
 folder = "./css/"
             # Make sure the folder exists
 if not os.path.exists(folder):
         os.makedirs(folder)
-
+#https://assets.website-files.com/6271d7fa721c60a64d063ed1/css/safelite.webflow.921584d68.css
 #css_files.append('https://uploads-ssl.webflow.com/63ff41bea75a049e418bbd55/css/normalize.css')
 #css_files.append('https://uploads-ssl.webflow.com/63ff41bea75a049e418bbd55/css/webflow.css')
+css_files.append('https://assets.website-files.com/6271d7fa721c60a64d063ed1/css/safelite.webflow.921584d68.css')
 
 for css_file in css_files:     
      fileName = os.path.basename(css_file)
