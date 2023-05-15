@@ -1,11 +1,11 @@
-name: Download YAML Files
+name: Download Website
 on: [push]
 jobs:
-  download_yaml:
+  download_website:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v2
-    - name: Download YAML Files
+    - name: Download Website
       run: |
-        wget --recursive --no-clobber --page-requisites --convert-links --no-parent --accept yaml --no-check-certificate -i safelite-sitemap.yaml
+        wget --mirror --convert-links --adjust-extension --page-requisites --no-parent -P /tmp/code https://safelite.webflow.io/
