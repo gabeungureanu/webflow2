@@ -23,8 +23,11 @@ jobs:
 
       - name: Commit changes
         run: |
-          git config --global user.name "Gabriel"
           git config --global user.email "gabe.ungureanu@outlook.com"
+          git config --global user.name "Gabriel"
+      - name: Add New Code
+        run: |
+          git status
           git add images/
-          git commit -m "Add images"
-          git push
+          git commit -m "test2"
+          git push origin main          
