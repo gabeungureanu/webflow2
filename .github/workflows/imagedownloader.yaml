@@ -20,3 +20,13 @@ jobs:
       
     - name: Run script
       run: python images.py
+    - name: Set Git user name and email
+      run: |
+        git config --global user.email "gabe.ungureanu@outlook.com"
+        git config --global user.name "Gabriel"
+    - name: Add New Code
+      run: |
+        git status
+        git add .
+        git commit -m "images commit"
+        git push origin main 
