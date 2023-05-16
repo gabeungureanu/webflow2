@@ -28,5 +28,6 @@ jobs:
       run: |
         git status
         git add .
+        git pull origin main 
         git commit -m "images commit"
         git push origin main 
