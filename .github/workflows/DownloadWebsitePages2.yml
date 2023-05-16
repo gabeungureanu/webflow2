@@ -1,0 +1,28 @@
+name: Download Website Pages2
+
+on:
+  workflow_dispatch: # Allows you to run the workflow manually from the Actions tab
+  schedule:
+    - cron: '0 0 * * *' # Runs the workflow every day at midnight UTC
+
+jobs:
+  download-pages:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install wget
+        run: sudo apt-get update && sudo apt-get install wget -y
+
+      - name: Download website pages
+        run: |
+          wget --recursive --no-clobber --page-requisites --html-extension --convert-links --restrict-file-names=windows --domains safelite.webflow.io --no-parent --accept html https://safelite.webflow.io/
+
+      - name: Commit downloaded pages to repository
+        run: |
+          git config --global user.name "Gabriel Ungureanu"
+          git config --global user.email "gabe.ungureanu@outlook.com"
+          git add .
+          git commit -m "Add downloaded pages"
+          git push
