@@ -46,9 +46,9 @@ def extract_links(html_content):
     # This can be done using libraries like BeautifulSoup or regular expressions
     # For demonstration purposes, we assume a dummy list of links
     links = [
-        'index.html',
-        'help-center',
-        'vehicles'
+        '/index.html',
+        '/help-center',
+        '/vehicles'
          '/robots.txt',
     '/vehicle-make/acura.html',
     '/vehicle-make/audi.html',
