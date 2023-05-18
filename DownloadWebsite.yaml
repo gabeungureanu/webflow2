@@ -1,0 +1,31 @@
+name: Download Website
+on: [push]
+jobs:
+  download_website:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+    - name: Download Website
+      run: |
+        wget --mirror --convert-links --adjust-extension --page-requisites --no-parent -P /tmp/code https://safelite.webflow.io/
+    - name: Update Code in Repository
+      uses: actions/checkout@v2
+      with:
+        ref: main # replace with the name of the branch you want to update
+    #- name: Remove Old Code
+     # run: |
+      #  rm -rf ./*
+    - name: Copy New Code
+      run: |
+        cp -r /tmp/code/safelite.webflow.io/* . 
+    - name: Set Git user name and email
+      run: |
+        git config --global user.email "gabe.ungureanu@outlook.com"
+        git config --global user.name "Gabriel"
+    - name: Add New Code
+      run: |
+        git status
+        git add .
+        git commit -m "test2"
+        git push origin main 
