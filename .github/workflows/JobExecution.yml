@@ -1,0 +1,26 @@
+name: Job Execution 
+on:
+  workflow_dispatch:
+
+jobs:
+  execute:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+         python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+         python -m pip install --upgrade pip
+         pip install requests beautifulsoup4 lxml Pillow
+        
+      - name: Run root YAML
+        run: |
+          # Replace the command below with the appropriate command to execute your root YAML file.
+          # For example, if your root YAML file is named "main.yaml":
+           python DownloadWebsite.yml
