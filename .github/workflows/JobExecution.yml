@@ -3,10 +3,41 @@ on:
   workflow_dispatch:
 
 jobs:
-  execute:
+  download:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+    - name: Download Website
+      run: |
+        wget --mirror --convert-links --adjust-extension --page-requisites --no-parent -P /tmp/code https://safelite.webflow.io/
+    - name: Update Code in Repository
+      uses: actions/checkout@v2
+      with:
+        ref: main # replace with the name of the branch you want to update
+    #- name: Remove Old Code
+     # run: |
+      #  rm -rf ./*
+    - name: Copy New Code
+      run: |
+        cp -r /tmp/code/safelite.webflow.io/* . 
+    - name: Set Git user name and email
+      run: |
+        git config --global user.email "gabe.ungureanu@outlook.com"
+        git config --global user.name "Gabriel"
+    - name: Add New Code
+      run: |
+        git status
+        git add .
+        git commit -m "test2"
+        git push origin main 
+        
+  imagedownload:
+    needs: download
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
         uses: actions/checkout@v2
       
       - name: Set up Python
@@ -18,9 +49,49 @@ jobs:
         run: |
          python -m pip install --upgrade pip
          pip install requests beautifulsoup4 lxml Pillow
-        
-      - name: Run root YAML
+      
+      - name: Run script
+        run: python images.py
+      - name: Set Git user name and email
         run: |
-          # Replace the command below with the appropriate command to execute your root YAML file.
-          # For example, if your root YAML file is named "main.yaml":
-           python downloadwebsite.py
+          git config --global user.email "gabe.ungureanu@outlook.com"
+          git config --global user.name "Gabriel"
+      - name: Add New Code
+        run: |
+          git status
+          git add .
+          git pull origin main 
+          git commit -m "images commit"
+          git push origin main 
+    
+  replacelinks:
+      needs: imagedownload
+      runs-on: ubuntu-latest
+      
+      steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Replace CSS and JS URLs in HTML files      
+        run: |          
+            find . -name '*.html' -exec sed -i 's|https://assets.website-files.com/6271d7fa721c60a64d063ed1/css|/css|g' {} +
+            find . -name '*.html' -exec sed -i 's|https://assets.website-files.com/6271d7fa721c60a64d063ed1/js|/js|g' {} +          
+      - name: Replace image URLs in HTML files  
+        run: |
+            find . -name '*.html' -exec sed -i 's|https://assets.website-files.com/6271d7fa721c60a64d063ed1|/images|g' {} +
+      - name: Set Git user name and email
+        run: |
+            git config --global user.email "gabe.ungureanu@outlook.com"
+            git config --global user.name "Gabriel"
+      - name: Add New Code
+        run: |
+            git status
+            git add .
+            git commit -m "Update link"         
+            git push origin main
+    
+    
+    
+    
+    
+    
+    
