@@ -85,8 +85,7 @@ jobs:
       - name: Add New Code
         run: |
           git status
-          git add .
-          git pull origin main 
+          git add .          
           git commit -m "images commit"
           git push origin main 
         continue-on-error: true
