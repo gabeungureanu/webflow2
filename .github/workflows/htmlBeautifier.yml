@@ -18,6 +18,10 @@ jobs:
 
       - name: Beautify HTML
         run: npx prettier --write "**/*.html"
+      - name: Set Git user name and email
+        run: |
+         git config --global user.email "gabe.ungureanu@outlook.com"
+         git config --global user.name "Gabriel"
       - name: Add New Code
         run: |
           git status
