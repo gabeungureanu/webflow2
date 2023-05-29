@@ -18,3 +18,9 @@ jobs:
 
       - name: Beautify HTML
         run: npx prettier --write "**/*.html"
+      - name: Add New Code
+        run: |
+          git status
+          git add .
+          git commit -m "test2"
+          git push origin main 
