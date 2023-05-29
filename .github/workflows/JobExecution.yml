@@ -112,8 +112,7 @@ jobs:
       - name: Add New Code
         run: |
           git status
-          git add .
-          git pull origin main 
-          git commit -m "images commit"
+          git add .          
+          git commit -m "beautify html commit"
           git push origin main 
         continue-on-error: true
