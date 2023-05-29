@@ -91,6 +91,9 @@ jobs:
 
       # Additional steps as needed
       - name: Push changes
+         git add .
+         git commit -m "test2"
+         git push origin main
         run: git push origin main 
         continue-on-error: true
     
