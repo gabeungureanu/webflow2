@@ -107,13 +107,13 @@ jobs:
         run: npx prettier --write "**/*.html"
       - name: Set Git user name and email
         run: |
-         git config --global user.email "gabe.ungureanu@outlook.com"
-         git config --global user.name "Gabriel"
+          git config --global user.email "gabe.ungureanu@outlook.com"
+          git config --global user.name "Gabriel"
       - name: Add New Code
         run: |
           git status
           git add .
           git pull origin main 
-          git commit -m "test2"
+          git commit -m "images commit"
           git push origin main 
         continue-on-error: true
