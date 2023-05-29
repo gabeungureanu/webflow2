@@ -91,6 +91,7 @@ jobs:
             git commit -m "Update link"         
             git push origin main 
         continue-on-error: true
+        
   beautifyhtml:
       needs: imagedownload
       runs-on: ubuntu-latest
