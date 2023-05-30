@@ -120,8 +120,7 @@ jobs:
         run: |
             git status
             git add .
-            git commit -m "Update link"       
-            git pull origin main
+            git commit -m "Update link" 
             git push origin main       
       continue-on-error: true
        
