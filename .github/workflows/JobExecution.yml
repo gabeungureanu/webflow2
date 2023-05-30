@@ -33,7 +33,7 @@ jobs:
          pip install requests beautifulsoup4 lxml Pillow
       
       - name: Run script
-        run: python ./python/images.py      
+        run: python python/images.py      
         continue-on-error: true
          
   htmlbeautifier:
