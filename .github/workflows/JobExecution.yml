@@ -112,8 +112,5 @@ jobs:
       - name: Add New Code
         run: |
           rm -rf node_modules
-          git add .
-          git commit -m "Update link"         
-          git pull origin main 
-          git push origin main 
+          git status
         continue-on-error: true       
