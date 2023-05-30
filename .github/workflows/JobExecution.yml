@@ -52,8 +52,7 @@ jobs:
        git config --global user.name "Gabriel"
     - name: Add New Code
       run: |        
-        rm -rf node_modules   
-        rm -rf index.html
+        rm -rf node_modules
         rsync -avhH --delete ./python ./       
         rm -rf python && mkdir -p python && cp -r images.py python
         git status
