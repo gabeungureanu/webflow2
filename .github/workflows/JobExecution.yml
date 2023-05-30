@@ -110,7 +110,10 @@ jobs:
          git config --global user.email "gabe.ungureanu@outlook.com"
          git config --global user.name "Gabriel"
       - name: Fetch latest changes
-        run: git fetch
+        run: |
+             git fetch
+             git merge origin main
+             git push origin main
       - name: Switch to divergent branch
         run: git checkout main
 
