@@ -109,11 +109,6 @@ jobs:
         run: |
          git config --global user.email "gabe.ungureanu@outlook.com"
          git config --global user.name "Gabriel"
-      - name: Commit or stash local changes
-        run: |
-          git diff-index --quiet HEAD || git commit -am "Stashing local changes"
-          git stash
-
       - name: Fetch remote changes
         run: git fetch
 
@@ -121,6 +116,16 @@ jobs:
         run: git merge origin/main
 
       # Additional steps as needed
+
+      - name: Resolve merge conflicts
+        run: |
+          git diff --name-only --diff-filter=U | while read file; do
+            git checkout --theirs "$file"
+            git add "$file"
+          done
+
+      - name: Commit resolved merge
+        run: git commit -m "Resolve merge conflicts"
 
       - name: Push changes
         run: git push origin main 
