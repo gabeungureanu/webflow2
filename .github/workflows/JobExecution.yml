@@ -53,6 +53,7 @@ jobs:
        git config --global user.name "Gabriel"
     - name: Add New Code
       run: |
+        ls && pwd
         rm -rf node_modules
         cd ..
         ls && pwd       
