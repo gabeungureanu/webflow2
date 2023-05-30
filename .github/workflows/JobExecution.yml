@@ -57,9 +57,5 @@ jobs:
         find . ! -name python -delete
         find . ! -name .github -delete
         find . ! -name .git -delete
-        cp -r ./python/* .
-        git status
-        git add .
-        git commit -m "html beautify"    
-        git push origin main 
+        ls -a 
       continue-on-error: true      
