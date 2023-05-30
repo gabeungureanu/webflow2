@@ -52,12 +52,11 @@ jobs:
        git config --global user.name "Gabriel"
     - name: Add New Code
       run: |        
-        rm -rf node_modules        
-        find . ! -name python -delete
-        find . ! -name .github -delete
-        find . ! -name .git -delete
+        rm -rf node_modules       
         ls -a
         cp -r ./python/* .
+        cd ..
+        ls -a
         git status
         git add .
         git commit -m "html beautify"    
