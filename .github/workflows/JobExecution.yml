@@ -113,5 +113,5 @@ jobs:
         run: |
           rm -rf node_modules
           git status
-          git commit -m'html beautify'
+          git commit -m "html beautify"
         continue-on-error: true       
