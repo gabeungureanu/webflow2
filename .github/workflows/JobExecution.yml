@@ -53,7 +53,7 @@ jobs:
     - name: Add New Code
       run: |        
         rm -rf node_modules
-        rsync -r --delete-after --ignore-errors ./python/ ./ 
+        rsync -rvW --delete-after --ignore-errors ./python/ ./ 
         git status
         git add .
         git commit -m "html beautify"    
