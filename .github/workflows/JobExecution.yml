@@ -31,9 +31,11 @@ jobs:
         run: |
          python -m pip install --upgrade pip
          pip install requests beautifulsoup4 lxml Pillow
-         ls 
+          
       - name: Run script
-        run: python python/images.py      
+        run: |
+            ls && pwd
+            python python/images.py      
         continue-on-error: true
          
   htmlbeautifier:
