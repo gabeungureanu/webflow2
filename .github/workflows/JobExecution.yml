@@ -65,9 +65,35 @@ jobs:
           git commit -m "images commit"
           git push origin main 
         continue-on-error: true
-    
-  replacelinks:
+         
+  htmlbeautifier:
       needs: imagedownload
+      runs-on: ubuntu-latest
+    
+      steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: npm install prettier --save-dev
+
+      - name: Beautify HTML
+        run: npx prettier --write "**/*.html"
+      - name: Set Git user name and email
+        run: |
+         git config --global user.email "gabe.ungureanu@outlook.com"
+         git config --global user.name "Gabriel"
+      - name: Add New Code
+        run: |
+          rm -rf node_modules
+          git status
+          git add .
+          git commit -m "html beautify"          
+          git push origin main
+        continue-on-error: true       
+
+  replacelinks:
+      needs: htmlbeautifier
       runs-on: ubuntu-latest
       
       steps:
@@ -91,30 +117,3 @@ jobs:
             git commit -m "Update link"         
             git push origin main 
         continue-on-error: true
-        
-  htmlbeautifier:
-      needs: replacelinks
-      runs-on: ubuntu-latest
-    
-      steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Install dependencies
-        run: npm install prettier --save-dev
-
-      - name: Beautify HTML
-        run: npx prettier --write "**/*.html"
-      - name: Set Git user name and email
-        run: |
-         git config --global user.email "gabe.ungureanu@outlook.com"
-         git config --global user.name "Gabriel"
-      - name: Add New Code
-        run: |
-          rm -rf node_modules
-          git status
-          git add .
-          git commit -m "html beautify"
-          git pull origin main --rebase
-          git push origin main
-        continue-on-error: true       
