@@ -113,8 +113,8 @@ jobs:
         run: |
           rm -rf node_modules 
       - uses: stefanzweifel/git-auto-commit-action@v4
-          #git status
-          #git add .
-          #git commit -m "test2"
-          #git push origin main  
+      - name: push changes 
+        run: |           
+         git pull
+         git push   
         continue-on-error: true       
