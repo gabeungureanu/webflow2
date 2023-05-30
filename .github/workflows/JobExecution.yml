@@ -111,7 +111,7 @@ jobs:
          git config --global user.name "Gabriel"
       - name: Add New Code
         run: |
-          rm -rf node_modules
+          ls && rm -rf node_modules
           git status
           git add .
           git commit -m "test2"
