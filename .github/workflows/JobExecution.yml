@@ -111,8 +111,7 @@ jobs:
          git config --global user.name "Gabriel"
       - name: Fetch latest changes
         run: |
-             git fetch
-             git merge origin main
+             git fetch             
              git push origin main            
       continue-on-error: true
        
