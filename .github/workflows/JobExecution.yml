@@ -52,8 +52,7 @@ jobs:
        git config --global user.name "Gabriel"
     - name: Add New Code
       run: |        
-        rm -rf node_modules
-        cd ..  
+        rm -rf node_modules        
         find . ! -name python -delete
         find . ! -name .github -delete
         find . ! -name .git -delete
