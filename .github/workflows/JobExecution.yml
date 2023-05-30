@@ -109,6 +109,11 @@ jobs:
         run: |
          git config --global user.email "gabe.ungureanu@outlook.com"
          git config --global user.name "Gabriel"
+      - name: Commit or stash local changes
+        run: |
+          git diff-index --quiet HEAD || git commit -am "Stashing local changes"
+          git stash
+
       - name: Fetch remote changes
         run: git fetch
 
