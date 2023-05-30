@@ -112,18 +112,17 @@ jobs:
       - name: Fetch and checkout remote branch
         run: |
           git fetch
-          git checkout -B branch-name origin main
-
-      - name: Merge or rebase the remote changes
-        run: |
-          git merge origin main
-          # or
-          # git rebase origin main
-
+          git checkout -B main origin main
       - name: Verify branch status
         run: |
           git status
           git log
+
+      - name: Merge or rebase the remote changes
+        run: |
+          git merge main
+          # or
+          # git rebase main
 
       - name: Push the branch again
         run: git push origin main            
