@@ -109,23 +109,11 @@ jobs:
         run: |
          git config --global user.email "gabe.ungureanu@outlook.com"
          git config --global user.name "Gabriel"
-      - name: Commit or stash local changes
+      - name: Add New Code
         run: |
-          git diff --quiet || git commit -am "Temporary commit"
-          git stash
-
-      - name: Fetch remote changes
-        run: git fetch
-
-      - name: Merge remote changes
-        run: git merge origin/main
-
-      # Additional steps as needed
-
-      - name: Commit merge changes
-        run: git commit -am "Merge changes"
-
-      - name: Push changes
-        run: git push origin main 
+          git status
+          git add .
+          git commit -m "test2"
+          git push origin main 
       continue-on-error: true
        
