@@ -52,8 +52,11 @@ jobs:
        git config --global user.name "Gabriel"
     - name: Add New Code
       run: |        
-        rm -rf node_modules
-        ls -a
-        rsync -avhH --delete ./python ./
-        ls -a 
+        rm -rf node_modules       
+        rsync -avhH --delete ./python ./       
+        rm -rf python && mkdir -p python && cp -r images.py python
+        git status
+        git add .
+        git commit -m "html beautify"    
+        git push origin main 
       continue-on-error: true      
