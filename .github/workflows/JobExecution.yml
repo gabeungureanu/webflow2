@@ -114,6 +114,7 @@ jobs:
           git status
           git add .
           git commit -m "test2"
+          git pull origin main
           git push origin main 
       continue-on-error: true
        
