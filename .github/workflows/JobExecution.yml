@@ -110,8 +110,6 @@ jobs:
          git config --global user.email "gabe.ungureanu@outlook.com"
          git config --global user.name "Gabriel"
       - name: Fetch latest changes
-        run: |
-             git fetch             
-             git push origin main            
+        run: git push origin main            
       continue-on-error: true
        
