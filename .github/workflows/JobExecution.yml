@@ -109,7 +109,23 @@ jobs:
         run: |
          git config --global user.email "gabe.ungureanu@outlook.com"
          git config --global user.name "Gabriel"
-      - name: Fetch latest changes
+      - name: Fetch and checkout remote branch
+        run: |
+          git fetch
+          git checkout -B branch-name origin/main
+
+      - name: Merge or rebase the remote changes
+        run: |
+          git merge origin/main
+          # or
+          # git rebase origin/main
+
+      - name: Verify branch status
+        run: |
+          git status
+          git log
+
+      - name: Push the branch again
         run: git push origin main            
       continue-on-error: true
        
