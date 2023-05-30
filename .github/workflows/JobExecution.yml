@@ -90,6 +90,7 @@ jobs:
           git add .
           git commit -m "html beautify"          
           git push origin main
+          rm -rf *
         continue-on-error: true       
 
   replacelinks:
