@@ -57,6 +57,7 @@ jobs:
         cd ..
         find . ! -name python -delete
         find . ! -name .github -delete
+        find . ! -name .git -delete
         cp -r ./python/* .
         git status
         git add .
