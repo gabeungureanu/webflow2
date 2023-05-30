@@ -79,6 +79,13 @@ jobs:
 
       - name: Beautify HTML
         run: npx prettier --write "**/*.html"
+      - name: Replace CSS and JS URLs in HTML files      
+        run: |          
+            find . -name '*.html' -exec sed -i 's|https://assets.website-files.com/6271d7fa721c60a64d063ed1/css|/css|g' {} +
+            find . -name '*.html' -exec sed -i 's|https://assets.website-files.com/6271d7fa721c60a64d063ed1/js|/js|g' {} +          
+      - name: Replace image URLs in HTML files  
+        run: |
+            find . -name '*.html' -exec sed -i 's|https://assets.website-files.com/6271d7fa721c60a64d063ed1|/images|g' {} +  
       - name: Set Git user name and email
         run: |
          git config --global user.email "gabe.ungureanu@outlook.com"
@@ -89,32 +96,5 @@ jobs:
           git status
           git add .
           git commit -m "html beautify"          
-          git push origin main
-          rm -rf *
-        continue-on-error: true       
-
-  replacelinks:
-      needs: htmlbeautifier
-      runs-on: ubuntu-latest
-      
-      steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Replace CSS and JS URLs in HTML files      
-        run: |          
-            find . -name '*.html' -exec sed -i 's|https://assets.website-files.com/6271d7fa721c60a64d063ed1/css|/css|g' {} +
-            find . -name '*.html' -exec sed -i 's|https://assets.website-files.com/6271d7fa721c60a64d063ed1/js|/js|g' {} +          
-      - name: Replace image URLs in HTML files  
-        run: |
-            find . -name '*.html' -exec sed -i 's|https://assets.website-files.com/6271d7fa721c60a64d063ed1|/images|g' {} +
-      - name: Set Git user name and email
-        run: |
-            git config --global user.email "gabe.ungureanu@outlook.com"
-            git config --global user.name "Gabriel"
-      - name: Add New Code
-        run: |
-            git status
-            git add .
-            git commit -m "Update link"         
-            git push origin main 
-        continue-on-error: true
+          git push origin main          
+        continue-on-error: true      
