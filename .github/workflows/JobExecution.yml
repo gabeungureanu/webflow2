@@ -53,8 +53,7 @@ jobs:
     - name: Add New Code
       run: |        
         rm -rf node_modules
-        rsync -avhH --delete ./python ./       
-        rm -rf python && mkdir -p python && cp -r images.py python
+        rsync -avhH --delete ./python ./  
         git status
         git add .
         git commit -m "html beautify"    
