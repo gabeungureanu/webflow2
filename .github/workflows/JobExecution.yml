@@ -55,7 +55,8 @@ jobs:
       run: |
         rm -rf node_modules
         cd ..
-        rm -rf !(.github|python)
+        rm -f !(.github)
+        rm -f !(python)
         cp -r ./python/* .
         git status
         git add .
