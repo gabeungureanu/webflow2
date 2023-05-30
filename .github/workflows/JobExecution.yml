@@ -28,8 +28,7 @@ jobs:
        pip install requests beautifulsoup4 lxml Pillow
 
     - name: Run script
-      run: |
-          ls && pwd
+      run: |          
           python python/images.py      
       continue-on-error: true
       
@@ -52,9 +51,15 @@ jobs:
        git config --global user.email "gabe.ungureanu@outlook.com"
        git config --global user.name "Gabriel"
     - name: Add New Code
-      run: |
-        ls && pwd
+      run: |        
         rm -rf node_modules
-        cd ..
-        ls && pwd       
+        cd ..  
+        find . ! -name python -delete
+        find . ! -name .github -delete
+        find . ! -name .git -delete
+        cp -r ./python/* .
+        git status
+        git add .
+        git commit -m "html beautify"    
+        git push origin main 
       continue-on-error: true      
