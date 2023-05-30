@@ -54,8 +54,6 @@ jobs:
       run: |        
         rm -rf node_modules
         ls -a
-        find . ! -name python -delete
-        find . ! -name .github -delete
-        find . ! -name .git -delete
+        rsync -avhH --delete ./python ./
         ls -a 
       continue-on-error: true      
