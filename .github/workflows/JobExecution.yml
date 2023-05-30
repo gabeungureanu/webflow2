@@ -107,24 +107,13 @@ jobs:
         run: npx prettier --write "**/*.html"
       - name: Set Git user name and email
         run: |
-         git config --global user.email "gabe.ungureanu@outlook.com"
-         git config --global user.name "Gabriel"
-      - name: Fetch and checkout remote branch
+            git config --global user.email "gabe.ungureanu@outlook.com"
+            git config --global user.name "Gabriel"
+      - name: Add New Code
         run: |
-          git fetch
-          git checkout -B main origin main
-      - name: Verify branch status
-        run: |
-          git status
-          git log
-
-      - name: Merge or rebase the remote changes
-        run: |
-          git merge main
-          # or
-          # git rebase main
-
-      - name: Push the branch again
-        run: git push origin main            
-      continue-on-error: true
+            git status
+            git add .
+            git commit -m "Update link"         
+            git push origin main 
+        continue-on-error: true
        
