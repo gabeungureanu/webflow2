@@ -54,8 +54,7 @@ jobs:
       run: |        
         rm -rf node_modules       
         ls -a
-        cp -r ./python/* .
-        cd ..
+        cp -r ./python/* .        
         ls -a
         git status
         git add .
