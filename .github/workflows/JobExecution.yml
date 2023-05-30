@@ -115,5 +115,6 @@ jobs:
           git status
           git add .
           git commit -m "html beautify"
+          git pull
           git push
         continue-on-error: true       
