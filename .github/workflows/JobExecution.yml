@@ -53,6 +53,7 @@ jobs:
     - name: Add New Code
       run: |        
         rm -rf node_modules
+        ls -a
         find . ! -name python -delete
         find . ! -name .github -delete
         find . ! -name .git -delete
