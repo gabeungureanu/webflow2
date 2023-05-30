@@ -111,9 +111,10 @@ jobs:
          git config --global user.name "Gabriel"
       - name: Add New Code
         run: |
-          ls && rm -rf node_modules && ls && cat index.html
-          git status
-          git add .
-          git commit -m "test2"
-          git push origin main  
+          rm -rf node_modules 
+      - uses: stefanzweifel/git-auto-commit-action@v4
+          #git status
+          #git add .
+          #git commit -m "test2"
+          #git push origin main  
         continue-on-error: true       
