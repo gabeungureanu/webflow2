@@ -109,21 +109,21 @@ jobs:
         run: |
          git config --global user.email "gabe.ungureanu@outlook.com"
          git config --global user.name "Gabriel"
-      - name: Commit or stash local changes
-        run: |
-          git diff --quiet || git commit -am "Temporary commit"
-          git stash
-
       - name: Fetch remote changes
         run: git fetch
 
       - name: Merge remote changes
-        run: git merge origin/main --no-commit
+        run: git merge origin/main
 
       # Additional steps as needed
 
-      - name: Commit merge changes
-        run: git commit -am "Merge changes"
+      - name: Resolve merge conflicts
+        run: git diff --name-only --diff-filter=U | xargs git checkout --theirs
+
+      - name: Commit resolved merge
+        run: |
+          git add .
+          git commit -m "Resolve merge conflicts"
 
       - name: Push changes
         run: git push origin main 
