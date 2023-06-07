@@ -15,31 +15,4 @@ jobs:
 
     - name: Remove srcset attribute
       run: |
-        find . -name "*.html" -exec python -c "
-import os from bs4 import BeautifulSoup
-
-# Get the file path
-file_path = os.path.abspath('{}')
-
-# Read the HTML file
-with open(file_path, 'r') as file:
-    html = file.read()
-
-# Parse the HTML
-soup = BeautifulSoup(html, 'html.parser')
-
-# Find all img tags
-img_tags = soup.find_all('img')
-
-# Loop through the img tags and remove the srcset attribute
-for img in img_tags:
-    if 'srcset' in img.attrs:
-        del img.attrs['srcset']
-
-# Get the modified HTML
-modified_html = str(soup)
-
-# Write the modified HTML back to the file
-with open(file_path, 'w') as file:
-    file.write(modified_html)
-" {} \;
+        find . -name "*.html" -type f -print0 | xargs -0 sed -i 's/srcset="[^"]*"//g'
