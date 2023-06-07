@@ -34,6 +34,10 @@ for url in urls:
 
     # Loop through the image tags
     for image_tag in image_tags:
+        #remove srcset tag
+        if 'srcset' in image_tag.attrs:
+         del image_tag.attrs['srcset']
+        
         # Get the source URL of the image
         image_url = image_tag.get("src")
 
