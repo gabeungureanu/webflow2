@@ -46,16 +46,12 @@ jobs:
     - name: Replace image URLs in HTML files  
       run: |
           find . -name '*.html' -exec sed -i 's|https://assets.website-files.com/6271d7fa721c60a64d063ed1|/images|g' {} +  
-    - name: Install htmlq
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y npm
-        sudo npm install -g npm@latest
-        sudo npm install -g htmlq
-
     - name: Remove srcset attribute
       run: |
-        find . -name "*.html" -type f -print0 | xargs -0 -I {} sh -c 'htmlq "img[srcset]" {} | htmlq -x "removeAttr(\"srcset\")" -i {} > tmpfile && mv tmpfile {}'
+        sudo apt-get update
+        sudo apt-get install -y sed
+
+        find . -name "*.html" -type f -print0 | xargs -0 sed -i 's/srcset="[^"]*"//g'
     - name: Set Git user name and email
       run: |
        git config --global user.email "gabe.ungureanu@outlook.com"
