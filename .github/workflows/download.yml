@@ -46,9 +46,14 @@ jobs:
     - name: Replace image URLs in HTML files  
       run: |
           find . -name '*.html' -exec sed -i 's|https://assets.website-files.com/6271d7fa721c60a64d063ed1|/images|g' {} +  
-    - name: Remove srcset from image tag from all html files  
+    - name: Install pup and jq
       run: |
-          find . -name "*.html" -type f -print0 | xargs -0 sed -i 's/srcset="[^"]*"//g'
+        sudo apt-get update
+        sudo apt-get install -y pup jq
+
+    - name: Remove srcset attribute
+      run: |
+        find . -name "*.html" -type f -print0 | xargs -0 -I {} sh -c 'pup "img[srcset]" {} | jq "del(.[].srcset)" | pup "img[srcset]" {} | jq ".[]" | pup "img" --parent --stdin-file {} > tmpfile && mv tmpfile {}'
     - name: Set Git user name and email
       run: |
        git config --global user.email "gabe.ungureanu@outlook.com"
