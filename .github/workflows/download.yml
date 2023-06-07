@@ -30,7 +30,7 @@ jobs:
     - name: Run script
       run: |         
           cd python
-          python image.py      
+          python images.py      
       continue-on-error: true
       
     - name: Install dependencies
