@@ -30,7 +30,7 @@ jobs:
     - name: Run script
       run: |         
           cd python
-          python images.py      
+          python remove_srcset.py      
       continue-on-error: true
       
     - name: Install dependencies
