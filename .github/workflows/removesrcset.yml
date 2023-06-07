@@ -1,0 +1,24 @@
+name: Remove srcset attribute 
+on:
+  workflow_dispatch:
+
+jobs:
+  remove_srcset:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Remove srcset attribute
+      run: |
+        find . -name "*.html" -type f -print0 | xargs -0 sed -i 's/\(srcset[[:space:]]*=[[:space:]]*"[^"]*"\)//g'
+    - name: Set Git user name and email
+      run: |
+       git config --global user.email "gabe.ungureanu@outlook.com"
+       git config --global user.name "Gabriel"
+    - name: Add New Code
+      run: |
+        git add .
+        git commit -m "remove srcset"    
+        git push origin main    
