@@ -35,8 +35,19 @@ for url in urls:
     # Loop through the image tags
     for image_tag in image_tags:
         #remove srcset tag
-        if 'srcset' in image_tag.attrs:
-         del image_tag.attrs['srcset']
+       # Download from srcset attribute
+        srcset = image_tag.get('srcset')
+        if srcset:
+            srcset_urls = [url.strip().split(' ')[0] for url in srcset.split(',')]
+            for i, srcset_url in enumerate(srcset_urls):
+                image_name = srcset_url.split('/')[-1]
+                save_path = os.path.join(folder_path, f"{image_name}")               
+                image_response = requests.get(url, stream=True)
+                 # Save the image in the folder
+                image_response.raise_for_status()
+                with open(save_path, 'wb') as file:
+                    for chunk in response.iter_content(chunk_size=8192):
+                        file.write(chunk)
         
         # Get the source URL of the image
         image_url = image_tag.get("src")
