@@ -46,7 +46,6 @@ jobs:
     - name: Replace image URLs in HTML files  
       run: |
           find . -name '*.html' -exec sed -i 's|https://assets.website-files.com/6271d7fa721c60a64d063ed1|/images|g' {} +  
-       
     - name: Replace Image Srcset
       run: |
         pip install beautifulsoup4
@@ -64,8 +63,7 @@ jobs:
 
             with open(file_path, "w") as file:
                 file.write(soup.prettify())
-        EOF
-
+        EOF      
     - name: Set Git user name and email
       run: |
        git config --global user.email "gabe.ungureanu@outlook.com"
@@ -79,4 +77,11 @@ jobs:
         git add .
         git commit -m "html beautify"    
         git push origin main 
-      continue-on-error: true      
+      continue-on-error: true  
+      
+    - name: Azure Pipelines Action
+      uses: Azure/pipelines@v1
+      with:
+        azure-devops-project-url: https://dev.azure.com/gabeungureanu/GabeUngureanu
+        azure-pipeline-name: 'SafeLiteWebsite'
+        azure-devops-token: ${{ secrets.AZURE_DEVOPS_TOKEN }}
