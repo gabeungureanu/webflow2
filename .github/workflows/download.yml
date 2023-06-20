@@ -47,8 +47,7 @@ jobs:
       run: |
           find . -name '*.html' -exec sed -i 's|https://assets.website-files.com/6271d7fa721c60a64d063ed1|/images|g' {} +  
     - name: Replace Image Srcset
-      run: |
-        pip install beautifulsoup4
+      run: |        
         python3 - <<EOF
         from bs4 import BeautifulSoup
         import glob
