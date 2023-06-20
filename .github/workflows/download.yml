@@ -50,7 +50,21 @@ jobs:
     - name: Replace Image Srcset
       run: |
         pip install beautifulsoup4
-        find . -name '*.html' -type f -print0 | xargs -0 -I {} bash -c 'python3 -c "from bs4 import BeautifulSoup; with open(\"{}\", \"r\") as file: soup = BeautifulSoup(file, \"html.parser\"); imgs = soup.find_all(\"img\", srcset=True); [img.attrs.pop(\"srcset\") for img in imgs]; with open(\"{}\", \"w\") as file: file.write(soup.prettify())"'
+        python3 - <<EOF
+        from bs4 import BeautifulSoup
+        import glob
+
+        html_files = glob.glob("**/*.html", recursive=True)
+
+        for file_path in html_files:
+            with open(file_path, "r") as file:
+                soup = BeautifulSoup(file, "html.parser")
+                imgs = soup.find_all("img", srcset=True)
+                [img.attrs.pop("srcset") for img in imgs]
+
+            with open(file_path, "w") as file:
+                file.write(soup.prettify())
+        EOF
 
     - name: Set Git user name and email
       run: |
