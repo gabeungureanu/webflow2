@@ -47,17 +47,10 @@ jobs:
       run: |
           find . -name '*.html' -exec sed -i 's|https://assets.website-files.com/6271d7fa721c60a64d063ed1|/images|g' {} +  
        
-    - name: Install pup
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y jq
-        curl -L https://github.com/ericchiang/pup/releases/download/v0.4.0/pup_v0.4.0_linux_amd64.zip --output pup.zip
-        unzip pup.zip
-        sudo mv pup /usr/local/bin/
-
     - name: Replace Image Srcset
       run: |
-        find . -name '*.html' -type f -print0 | xargs -0 -I {} bash -c "pup 'img[srcset]' -i {} | pup 'img' -p 'removeAttr(\"srcset\")' > tmp.html && mv tmp.html {}"
+        pip install beautifulsoup4
+        find . -name '*.html' -type f -print0 | xargs -0 -I {} python3 -c "from bs4 import BeautifulSoup; soup = BeautifulSoup(open('{}', 'r'), 'html.parser'); imgs = soup.find_all('img', srcset=True); [img.attrs.pop('srcset') for img in imgs]; with open('{}', 'w') as f: f.write(str(soup.prettify()))"
     - name: Set Git user name and email
       run: |
        git config --global user.email "gabe.ungureanu@outlook.com"
