@@ -50,7 +50,7 @@ jobs:
     - name: Replace Image Srcset
       run: |
         pip install beautifulsoup4
-        find . -name '*.html' -type f -print0 | xargs -0 -I {} python3 -c "from bs4 import BeautifulSoup; soup = BeautifulSoup(open('{}', 'r'), 'html.parser'); imgs = soup.find_all('img', srcset=True); [img.attrs.pop('srcset') for img in imgs]; with open('{}', 'w') as f: f.write(str(soup.prettify()))"
+        find . -name '*.html' -type f -print0 | xargs -0 -I {} bash -c "python3 -c 'from bs4 import BeautifulSoup; with open(\"{}\", \"r\") as file: soup = BeautifulSoup(file, \"html.parser\"); imgs = soup.find_all(\"img\", srcset=True); [img.attrs.pop(\"srcset\") for img in imgs]; with open(\"{}\", \"w\") as file: file.write(soup.prettify())'"
     - name: Set Git user name and email
       run: |
        git config --global user.email "gabe.ungureanu@outlook.com"
