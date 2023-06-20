@@ -47,9 +47,17 @@ jobs:
       run: |
           find . -name '*.html' -exec sed -i 's|https://assets.website-files.com/6271d7fa721c60a64d063ed1|/images|g' {} +  
        
-    - name: Remove srcset attribute      
+    - name: Install pup
       run: |
-           find . -name '*.html' -type f -print0 | xargs -0 sed -i'' -e 's/srcset[^>]*>//g'
+        sudo apt-get update
+        sudo apt-get install -y jq
+        curl -L https://github.com/ericchiang/pup/releases/download/v0.4.0/pup_v0.4.0_linux_amd64.zip --output pup.zip
+        unzip pup.zip
+        sudo mv pup /usr/local/bin/
+
+    - name: Replace Image Srcset
+      run: |
+        find . -name '*.html' -type f -print0 | xargs -0 -I {} bash -c "pup 'img[srcset]' -i {} | pup 'img' -p 'removeAttr(\"srcset\")' | sponge {}"
     - name: Set Git user name and email
       run: |
        git config --global user.email "gabe.ungureanu@outlook.com"
