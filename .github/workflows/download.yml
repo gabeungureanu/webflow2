@@ -46,11 +46,7 @@ jobs:
     - name: Replace image URLs in HTML files  
       run: |
           find . -name '*.html' -exec sed -i 's|https://assets.website-files.com/6271d7fa721c60a64d063ed1|/images|g' {} +  
-    
-    - name: Install PUP dependencies
-      run: |            
-           run: sudo apt-get update && sudo apt-get install -y html-xml-utils
-
+       
     - name: Remove srcset attribute      
       run: |
        find . -name "*.html" -type f -exec sh -c 'sed -i "s/srcset=\"[^\"]*\"//g" {} \;'
