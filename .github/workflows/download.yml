@@ -48,21 +48,7 @@ jobs:
           find . -name '*.html' -exec sed -i 's|https://assets.website-files.com/6271d7fa721c60a64d063ed1|/images|g' {} +  
     - name: Replace Image Srcset
       run: |
-        python3 - <<EOF
-        from bs4 import BeautifulSoup
-        import glob
-
-        html_files = glob.glob("**/*.html", recursive=True)
-
-        for file_path in html_files:
-            with open(file_path, "r") as file:
-                soup = BeautifulSoup(file, "html.parser")
-                imgs = soup.find_all("img", srcset=True)
-                [img.attrs.pop("srcset") for img in imgs]
-
-            with open(file_path, "w") as file:
-                file.write(soup.prettify())
-        EOF      
+        find . -name '*.html' -type f -exec sed -i 's/srcset="[^"]*"//g' {} +      
     - name: Set Git user name and email
       run: |
        git config --global user.email "gabe.ungureanu@outlook.com"
