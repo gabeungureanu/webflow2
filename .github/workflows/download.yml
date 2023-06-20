@@ -50,9 +50,10 @@ jobs:
     - name: Install PUP dependencies
       run: |            
            run: sudo apt-get update && sudo apt-get install -y html-xml-utils
+
     - name: Remove srcset attribute      
       run: |
-        find . -name "*.html" -type f -exec sh -c 'sed -i "s/srcset[^>]*//g" {}' \;
+       find . -name "*.html" -type f -exec sh -c 'sed -i "s/srcset=\"[^\"]*\"//g" {}' \;
     - name: Set Git user name and email
       run: |
        git config --global user.email "gabe.ungureanu@outlook.com"
