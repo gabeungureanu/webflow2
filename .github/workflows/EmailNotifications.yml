@@ -15,8 +15,8 @@ jobs:
 
       - name: Send email
         run: |
-          echo "To: jai.singh@logixshapers.biz
-          From: support@khamelia.com
+          echo "To: jai.singh@logixshapers.biz"
+          From: "support@khamelia.com"
           Subject: Test Email
 
           This is the body of the email.
