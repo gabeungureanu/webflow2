@@ -7,26 +7,17 @@ on:
       - main
 
 jobs:
-  send-email:
+  send_email:
     runs-on: ubuntu-latest
-    
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-        
-      - name: Send Email Notification
-        uses: actions/email@v2
-        with:
-          server_address: 'smtp.office365.com'
-          server_port: 587
-          username: 'support@khamelia.com'
-          password: 'askSign4e!'
-          subject: Email Notification
-          body: |
-            Hello,
-            
-            This is a notification email sent through GitHub Actions.
-            
-            Regards,
-            Your GitHub Workflow
-          to: jai.singh@logixshapers.biz
+      - name: Set up sendmail
+        run: sudo apt-get update && sudo apt-get install -y sendmail
+
+      - name: Send email
+        run: |
+          echo "To: jai.singh@logixshapers.biz
+          From: "support@khamelia.com"
+          Subject: Test Email
+
+          This is the body of the email.
+          " | sendmail -t
