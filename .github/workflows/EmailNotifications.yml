@@ -11,14 +11,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:     
       - name: Send email Notification
-        uses: wadeww/send-email-action@master
+        uses: dawidd6/action-send-mail@v3
         with:
           server_address: smtp.office365.com
           port: 587
           username: support@khamelia.com
           password: askSign4e!
           subject: Website download finished
-          body: Hi Dear <br/>
+          body: Hi Dear 
                 The website https://safelite.webflow.io/ download successfully and uploaded to AWS.
           html_body: file://mailer.html
           to: jai.singh@logixshapers.biz
