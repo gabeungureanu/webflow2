@@ -13,11 +13,14 @@ jobs:
       - name: Set up sendmail
         run: sudo apt-get update && sudo apt-get install -y sendmail
 
-      - name: Send email
-        run: |
-          echo "To: jai.singh@logixshapers.biz
-          From: support@khamelia.com
-          Subject: Test Email
-
-          This is the body of the email.
-          " | sendmail -t
+      - name: Send some mail
+        uses: wadeww/send-email-action@master
+        with:
+          server_address: smtp.office365.com
+          port: 587
+          username: support@khamelia.com
+          password: askSign4e!
+          subject: Workflow finished
+          body: Job completed ${{job.status}}
+          to: jai.singh@logixshapers.biz
+          from: support@khamelia.com
