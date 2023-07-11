@@ -10,7 +10,7 @@ jobs:
   send_email:
     runs-on: ubuntu-latest
     steps:     
-      - name: Send some mail
+      - name: Send email Notification
         uses: wadeww/send-email-action@master
         with:
           server_address: smtp.office365.com
