@@ -9,10 +9,7 @@ on:
 jobs:
   send_email:
     runs-on: ubuntu-latest
-    steps:
-      - name: Set up sendmail
-        run: sudo apt-get update && sudo apt-get install -y sendmail
-
+    steps:     
       - name: Send some mail
         uses: wadeww/send-email-action@master
         with:
@@ -20,7 +17,8 @@ jobs:
           port: 587
           username: support@khamelia.com
           password: askSign4e!
-          subject: Workflow finished
-          body: Job completed ${{job.status}}
+          subject: Website download finished
+          body: Hi Dear 
+                The website https://safelite.webflow.io/ download successfully and uploaded to AWS.
           to: jai.singh@logixshapers.biz
           from: support@khamelia.com
