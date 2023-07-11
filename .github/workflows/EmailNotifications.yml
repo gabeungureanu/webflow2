@@ -18,6 +18,7 @@ jobs:
           username: support@khamelia.com
           password: askSign4e!
           subject: Website download finished          
-          html_body: mailer.html
+          body: Hi Dear
+                The website https://safelite.webflow.io/ download successfully and uploaded to AWS.
           to: jai.singh@logixshapers.biz
           from: support@khamelia.com
