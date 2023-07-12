@@ -21,12 +21,6 @@ jobs:
         id: determine-event
         run: echo "::set-output name=event::${{ toJson(github.event_name) }}"
         
-      - name: Extract email addresses
-        id: extract-emails
-        run: |
-          echo "::set-output name=emails::$(jq -r '.[] | .email' ${{ steps.read-recipients.outputs.recipients }})"
-
-        
       - name: Send Push Email
         if: steps.determine-event.outputs.event == 'push'
         uses: dawidd6/action-send-mail@v3
@@ -37,7 +31,7 @@ jobs:
           password: askSign4e!
           subject: "PushEvent Triggered: ${{ github.repository }}"          
           body: PushEvent Triggered! A recent push to Safelite's GitHub repository from Webflow has been successfully completed.
-          to: ${{ steps.extract-emails.outputs.emails }}
+          to: sandeep.agarwal@logixshapers.com
           from: support@khamelia.com
           
       - name: Send Issues Email
@@ -50,7 +44,7 @@ jobs:
           password: askSign4e!
           subject: "IssueEvent Triggered:${{ github.repository }}"          
           body: IssueEvent Triggered! We've had some progress on the reported issues. Our team have been actively addressing them to enhance the overall user experience.
-          to: ${{ fromJSON(steps.read-recipients.outputs.recipients).map(r => r.email).join(', ') }}
+          to: sandeep.agarwal@logixshapers.com
           from: support@khamelia.com
           
       - name: Send Release Email
@@ -63,7 +57,7 @@ jobs:
           password: askSign4e!
           subject: "ReleaseEvent Triggered: ${{ github.repository }}"          
           body: ReleaseEvent Triggered! We are thrilled to announce a new release! The latest version is now available, packed with exciting features and enhancements.
-          to: ${{ fromJSON(steps.read-recipients.outputs.recipients).map(r => r.email).join(', ') }}
+          to: sandeep.agarwal@logixshapers.com
           from: support@khamelia.com
           
           
