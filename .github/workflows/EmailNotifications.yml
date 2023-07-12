@@ -26,6 +26,11 @@ jobs:
         run: |
           echo "::set-output name=recipients::$(cat .github/workflow2/reciepient.json)"
         
+      - name: Extract email addresses
+        id: extract-emails
+        run: |
+          echo "::set-output name=emails::$(jq -r '.[] | .email' ${{ steps.read-recipients.outputs.recipients }})"
+        
       - name: Send Push Email
         if: steps.determine-event.outputs.event == 'push'
         uses: dawidd6/action-send-mail@v3
@@ -36,7 +41,7 @@ jobs:
           password: askSign4e!
           subject: "PushEvent Triggered: ${{ github.repository }}"          
           body: PushEvent Triggered! A recent push to Safelite's GitHub repository from Webflow has been successfully completed.
-          to: ${{ fromJson(steps.read-recipients.outputs.recipients).map(r => r.email).join(', ') }}
+          to: ${{ steps.extract-emails.outputs.emails }}
           from: support@khamelia.com
           
       - name: Send Issues Email
