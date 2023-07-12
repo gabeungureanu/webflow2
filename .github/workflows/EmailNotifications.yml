@@ -19,7 +19,7 @@ jobs:
     steps:   
       - name: Determine Event Type
         id: determine-event
-        run: echo "::set-output name=event::${{ toJson(github.event_name) }}"
+        run: echo "::set-output name=recipients::$(cat .github/workflows/recipients.json)"
         
       - name: Read Recipients from JSON
         uses: actions/github-script@v4
