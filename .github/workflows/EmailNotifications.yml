@@ -12,10 +12,7 @@ on:
   release:
     types:
       - published
-  issue_comment:
-    types:
-      - created
-
+  
 jobs:
   send_email:
     runs-on: ubuntu-latest    
