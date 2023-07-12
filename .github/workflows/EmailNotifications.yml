@@ -21,13 +21,11 @@ jobs:
         id: determine-event
         run: echo "::set-output name=event::${{ toJson(github.event_name) }}"
         
-      - name: Read Recipients from JSON
-        uses: actions/github-script@v4
+      - name: Read recipients file
         id: read-recipients
-        with:
-           script: |
-             const recipients = require('.github/workflow2//recipients.json').recipients;
-             core.setOutput('recipients', JSON.stringify(recipients));
+        run: |
+         recipients=$(cat $GITHUB_WORKSPACE/path/to/recipients.json | jq -r '.[].email' | paste -sd ',' -)
+         echo "::set-output name=recipients::$recipients"
          
       - name: Send Push Email
         if: steps.determine-event.outputs.event == 'push'
