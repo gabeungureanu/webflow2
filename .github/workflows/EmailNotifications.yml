@@ -24,7 +24,7 @@ jobs:
       - name: Read recipients file
         id: read-recipients
         run: |
-         recipients=$(cat webflow2/.github/workflows/recipients.json | jq -r '.[].email' | paste -sd ',' -)
+         recipients=$(cat webflow2/recipients.json | jq -r '.[].email' | paste -sd ',' -)
          echo "::set-output name=recipients::$recipients"
               
       - name: Print Recipients
@@ -41,7 +41,7 @@ jobs:
           password: askSign4e!
           subject: "PushEvent Triggered: ${{ github.repository }}"          
           body: PushEvent Triggered! A recent push to Safelite's GitHub repository from Webflow has been successfully completed.
-          to: jai.singh@logixshapers.biz
+          to: j.singh@logixshapers.biz
           from: support@khamelia.com
           
       - name: Send Issues Email
