@@ -26,7 +26,7 @@ jobs:
         id: read-recipients
         with:
            script: |
-             const recipients = require('./recipients.json').recipients;
+             const recipients = require('.github/workflow2//recipients.json').recipients;
              core.setOutput('recipients', JSON.stringify(recipients));
          
       - name: Send Push Email
