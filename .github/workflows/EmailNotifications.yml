@@ -36,7 +36,7 @@ jobs:
           password: askSign4e!
           subject: "PushEvent Triggered: ${{ github.repository }}"          
           body: PushEvent Triggered! A recent push to Safelite's GitHub repository from Webflow has been successfully completed.
-          to: jai.singh@logixshapers.com
+          to: ${{ fromJson(steps.read-recipients.outputs.recipients).map(r => r.email).join(', ') }}
           from: support@khamelia.com
           
       - name: Send Issues Email
