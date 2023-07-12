@@ -21,6 +21,14 @@ jobs:
         id: determine-event
         run: echo "::set-output name=event::${{ toJson(github.event_name) }}"
         
+      - name: Read Recipients from JSON
+        uses: actions/github-script@v4
+        id: read-recipients
+        with:
+         script: |
+          const recipients = require('./recipients.json').recipients;
+          core.setOutput('recipients', JSON.stringify(recipients));
+        
       - name: Send Push Email
         if: steps.determine-event.outputs.event == 'push'
         uses: dawidd6/action-send-mail@v3
@@ -31,7 +39,7 @@ jobs:
           password: askSign4e!
           subject: "PushEvent Triggered: ${{ github.repository }}"          
           body: PushEvent Triggered! A recent push to Safelite's GitHub repository from Webflow has been successfully completed.
-          to: sandeep.agarwal@logixshapers.com
+          to: jai.singh@logixshapers.com
           from: support@khamelia.com
           
       - name: Send Issues Email
