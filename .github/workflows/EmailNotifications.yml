@@ -40,7 +40,7 @@ jobs:
           password: askSign4e!
           subject: "PushEvent Triggered: ${{ github.repository }}"          
           body: PushEvent Triggered! A recent push to Safelite's GitHub repository from Webflow has been successfully completed.
-          to: ${{ fromJson(steps.read-recipients.outputs.recipients).map(r => r.email).join(', ') }}
+          to: ${{ fromJSON(steps.read-recipients.outputs.recipients).map(r => r.email).join(', ') }}
           from: support@khamelia.com
           
       - name: Send Issues Email
@@ -53,7 +53,7 @@ jobs:
           password: askSign4e!
           subject: "IssueEvent Triggered:${{ github.repository }}"          
           body: IssueEvent Triggered! We've had some progress on the reported issues. Our team have been actively addressing them to enhance the overall user experience.
-          to: ${{ fromJson(steps.read-recipients.outputs.recipients).map(r => r.email).join(', ') }}
+          to: ${{ fromJSON(steps.read-recipients.outputs.recipients).map(r => r.email).join(', ') }}
           from: support@khamelia.com
           
       - name: Send Release Email
@@ -66,7 +66,7 @@ jobs:
           password: askSign4e!
           subject: "ReleaseEvent Triggered: ${{ github.repository }}"          
           body: ReleaseEvent Triggered! We are thrilled to announce a new release! The latest version is now available, packed with exciting features and enhancements.
-          to: ${{ fromJson(steps.read-recipients.outputs.recipients).map(r => r.email).join(', ') }}
+          to: ${{ fromJSON(steps.read-recipients.outputs.recipients).map(r => r.email).join(', ') }}
           from: support@khamelia.com
           
           
