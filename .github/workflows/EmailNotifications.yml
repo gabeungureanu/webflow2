@@ -20,13 +20,7 @@ jobs:
       - name: Determine Event Type
         id: determine-event
         run: echo "::set-output name=event::${{ toJson(github.event_name) }}"
-        
-      - name: Read recipients file
-        id: read-recipients
-        run: |
-         recipients=$(cat $GITHUB_WORKSPACE/path/to/recipients.json | jq -r '.[].email' | paste -sd ',' -)
-         echo "::set-output name=recipients::$recipients"
-         
+              
       - name: Send Push Email
         if: steps.determine-event.outputs.event == 'push'
         uses: dawidd6/action-send-mail@v3
@@ -37,7 +31,7 @@ jobs:
           password: askSign4e!
           subject: "PushEvent Triggered: ${{ github.repository }}"          
           body: PushEvent Triggered! A recent push to Safelite's GitHub repository from Webflow has been successfully completed.
-          to: ${{ fromJson(steps.read-recipients.outputs.recipients).map(r => r.email).join(', ') }}
+          to: jai@logixshapers.biz
           from: support@khamelia.com
           
       - name: Send Issues Email
