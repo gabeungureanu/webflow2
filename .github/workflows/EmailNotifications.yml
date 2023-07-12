@@ -21,6 +21,12 @@ jobs:
         id: determine-event
         run: echo "::set-output name=event::${{ toJson(github.event_name) }}"
               
+      - name: Read recipients file
+        id: read-recipients
+        run: |
+         recipients=$(cat $GITHUB_WORKSPACE/path/to/recipients.json | jq -r '.[].email' | paste -sd ',' -)
+         echo "::set-output name=recipients::$recipients"
+              
       - name: Send Push Email
         if: steps.determine-event.outputs.event == 'push'
         uses: dawidd6/action-send-mail@v3
