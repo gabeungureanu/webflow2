@@ -24,15 +24,17 @@ jobs:
       - name: Read recipients file
         id: read-recipients
         run: |
+         json_file_path: .github/recipients.json
          recipients=$(cat .github/recipients.json | jq -r '.[].email' | paste -sd ',' -)
          echo "::set-output name=recipients::$recipients"
+         echo "::set-output json_file_path"
               
       - name: Print Recipients
         run: |
          echo "Recipients: ${{ steps.read-recipients.outputs.recipients }}"
               
       - name: Send Push Email
-        if: steps.determine-event.outputs.event == 'push'
+        if: steps.determine-event.outputs.event == 'issues'
         uses: dawidd6/action-send-mail@v3
         with:
           server_address: smtp.office365.com
