@@ -24,7 +24,8 @@ jobs:
         run: |
           echo "Repository directory: ${{ github.workspace }}"
           echo "File path: ${{ github.workspace }}/path/to/file.json
-          
+           echo "File path1 : ${{ github.workspace }}'/blob/main/recipients.json
+           
       - name: Determine Event Type
         id: determine-event
         run: echo "::set-output name=event::${{ toJson(github.event_name) }}"
