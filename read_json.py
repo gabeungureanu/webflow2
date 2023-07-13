@@ -7,7 +7,7 @@ try:
         json_data = json.load(json_file)
 
 # Iterate through the array and concatenate values
-concatenated = ', '.join(item['email'] for item in json_data)
+concatenated = ', '.join(recipients['email'] for recipients in json_data)
 
 # Remove the trailing comma and space
 concatenated = concatenated.rstrip(', ')
