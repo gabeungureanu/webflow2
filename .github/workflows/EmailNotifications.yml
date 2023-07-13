@@ -24,10 +24,8 @@ jobs:
       - name: Read recipients file
         id: read-recipients
         run: |
-         json_file_path: .github/recipients.json
          recipients=$(cat .github/recipients.json | jq -r '.[].email' | paste -sd ',' -)
          echo "::set-output name=recipients::$recipients"
-         echo "::set-output json_file_path"
               
       - name: Print Recipients
         run: |
