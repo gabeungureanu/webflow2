@@ -24,24 +24,16 @@ jobs:
         id: determine-event
         run: echo "::set-output name=event::${{ toJson(github.event_name) }}"
               
-        env: 
-           Emailidval: ''
+     
               
       - name: Read JSON file
         id: read-json
         run: |
-         $Emailidval: python read_json.py
-             echo "Recipients:   $Emailidval "
+           python read_json.py
+         
              
-     # print($Emailidval)
-     # - name: Use JSON data
-     #   run: |
-     #     echo "JSON data: ${{ steps.read_json.outputs.data }}"
-          # Use the value in subsequent steps as needed
-       
-  #   - name: Use Data
-  #     run: |
-  #        echo "Recipients: ${{ steps.run-python-script.outputs.email_list }}"
+   
+
               
       - name: Send Push Email
         if: steps.determine-event.outputs.event == 'issues'
