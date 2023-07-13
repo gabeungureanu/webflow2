@@ -27,7 +27,9 @@ jobs:
       - name: Read recipients file
         id: read-recipients
         run: |
-          python read_json.py                     
+          python read_json.py 
+          env:
+          OUTPUT_VAR: ${{ steps.read-recipients.outputs.data }}
           #recipients=$(cat '/home/runner/work/webflow2/webflow2/recipients.json' | jq -r '.[].email' | paste -sd ',' -)
           #echo "::set-output name=recipients::$recipients"
          
