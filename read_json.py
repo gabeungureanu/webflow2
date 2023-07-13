@@ -7,7 +7,7 @@ try:
         json_data = json.load(json_file)
         recipients = json_data['recipients']
          concatenated = ', '.join(recipient['email'] for recipient in recipients)
-        Emaildata = concatenated
+       # Emaildata = concatenated
          #print(f"::set-output name=data::{json_data}")
         #print(json_data)
 except Exception as e:
