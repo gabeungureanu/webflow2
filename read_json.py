@@ -5,7 +5,15 @@ file_path = '/home/runner/work/webflow2/webflow2/recipients.json'  # Replace wit
 try:
     with open(file_path, 'r') as json_file:
         json_data = json.load(json_file)
-        print(json.dumps(json_data))  # Return the JSON data as a string
+
+# Iterate through the array and concatenate values
+concatenated = ""
+for item in data:
+    concatenated += item['email'] + ", "
+
+# Remove the trailing comma and space
+concatenated = concatenated.rstrip(', ')
+        print(json.dumps(concatenated))  # Return the JSON data as a string
 except Exception as e:
     print(f"Error reading JSON file: {e}")
     exit(1)
