@@ -28,8 +28,8 @@ jobs:
         id: read-recipients
         run: |
            python read_json.py  
-         # recipients=$(cat /home/runner/work/webflow2/webflow2/recipients.json | jq -r '.[].email' | paste -sd ',' -)
-         # echo "::set-output name=recipients::$recipients"
+           recipients=$(cat python read_json.py | jq -r '.[].email' | paste -sd ',' -)
+           echo "::set-output name=recipients::$recipients"
          
       - name: Print Recipients
         run: |
