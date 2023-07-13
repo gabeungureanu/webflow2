@@ -30,7 +30,7 @@ jobs:
         id: read-json
         run: |
           # python read_json.py
-          #python read_jsondata.py
+          python read_jsondata.py
              
             from read_jsondata import read_json_file
             json_file_path = "'/home/runner/work/webflow2/webflow2/recipients.json'"
