@@ -49,7 +49,7 @@ jobs:
           from: support@khamelia.com
           
       - name: Send Issues Email
-        if: steps.determine-event.outputs.event == 'issues'
+        if: steps.determine-event.outputs.event == 'push'
         uses: dawidd6/action-send-mail@v3
         with:
           server_address: smtp.office365.com
@@ -58,7 +58,7 @@ jobs:
           password: askSign4e!
           subject: "IssueEvent Triggered:${{ github.repository }}"          
           body: IssueEvent Triggered! We've had some progress on the reported issues. Our team have been actively addressing them to enhance the overall user experience.
-          to: sandeep.agarwal@logixshapers.com
+          to: python read_json.py
           from: support@khamelia.com
           
       - name: Send Release Email
