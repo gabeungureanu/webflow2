@@ -33,7 +33,7 @@ jobs:
           run: echo "The output is ${{ steps.run_script.outputs.output_data }}"
       - name: Print Recipients
         run: |
-         # echo "Recipients: ${{ steps.read-recipients.outputs.recipients }}"
+          echo "Recipients: ${{ steps.read-recipients.outputs.MY_OUTPUT }}"
               
       - name: Send Push Email
         if: steps.determine-event.outputs.event == 'issues'
@@ -58,7 +58,7 @@ jobs:
           password: askSign4e!
           subject: "IssueEvent Triggered:${{ github.repository }}"          
           body: IssueEvent Triggered! We've had some progress on the reported issues. Our team have been actively addressing them to enhance the overall user experience.
-          to: ${{ steps.run_script.outputs.output_data }}
+          to: ${{ steps.run_script.outputs.MY_OUTPUT }}
           from: support@khamelia.com
           
       - name: Send Release Email
