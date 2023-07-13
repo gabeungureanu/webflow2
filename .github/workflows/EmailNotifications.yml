@@ -17,6 +17,9 @@ jobs:
   send_email:
     runs-on: ubuntu-latest    
     steps:   
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        
       - name: Determine Event Type
         id: determine-event
         run: echo "::set-output name=event::${{ toJson(github.event_name) }}"
