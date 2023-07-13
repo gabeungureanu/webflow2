@@ -1,6 +1,6 @@
 import json
 
-file_path = ${{ github.workspace }}'/blob/main/recipients.json'  # Replace with the actual path to your JSON file
+file_path = '/home/runner/work/webflow2/webflow2/blob/main/recipients.json'  # Replace with the actual path to your JSON file
 
 try:
     with open(file_path, 'r') as json_file:
