@@ -24,8 +24,8 @@ jobs:
         id: determine-event
         run: echo "::set-output name=event::${{ toJson(github.event_name) }}"
               
-      - name: Read recipients file
-        id: read-recipients
+      - name: Read JSON file
+        id: read-json
         run: |
           python read_json.py
         
