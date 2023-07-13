@@ -11,6 +11,7 @@ json_data = '''
 
 # Parse the JSON array
 data = json.loads(json_data)
+print(data)
 
 # Concatenate single property values
 concatenated = ', '.join(recipient['email'] for recipient in data)
