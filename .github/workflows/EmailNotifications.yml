@@ -19,7 +19,12 @@ jobs:
     steps:   
       - name: Checkout repository
         uses: actions/checkout@v2
-        
+  
+      - name: Print file path
+        run: |
+          echo "Repository directory: ${{ github.workspace }}"
+          echo "File path: ${{ github.workspace }}/path/to/file.json
+          
       - name: Determine Event Type
         id: determine-event
         run: echo "::set-output name=event::${{ toJson(github.event_name) }}"
