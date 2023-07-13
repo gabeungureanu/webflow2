@@ -1,6 +1,6 @@
 import json
 
-file_path = './webflow2/recipients.json'  # Replace with the actual path to your JSON file
+file_path = '/webflow2/blob/main/recipients.json'  # Replace with the actual path to your JSON file
 
 try:
     with open(file_path, 'r') as json_file:
