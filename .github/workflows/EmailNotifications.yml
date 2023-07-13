@@ -27,12 +27,13 @@ jobs:
       - name: Read recipients file
         id: read-recipients
         run: |
-         recipients=$(cat ./webflow2/recipients.json | jq -r '.[].email' | paste -sd ',' -)
-         echo "::set-output name=recipients::$recipients"
-              
+           python read_json.py  
+        # recipients=$(cat $webflow2/recipients.json | jq -r '.[].email' | paste -sd ',' -)
+        # echo "::set-output name=recipients::$recipients"
+         
       - name: Print Recipients
         run: |
-         echo "Recipients: ${{ steps.read-recipients.outputs.recipients }}"
+         # echo "Recipients: ${{ steps.read-recipients.outputs.recipients }}"
               
       - name: Send Push Email
         if: steps.determine-event.outputs.event == 'issues'
