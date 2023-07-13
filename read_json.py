@@ -8,7 +8,7 @@ try:
 
 # Iterate through the array and concatenate values
 concatenated = ""
-for item in data:
+for item in json_data:
     concatenated += item['email'] + ", "
 
 # Remove the trailing comma and space
