@@ -29,9 +29,9 @@ jobs:
         run: |
           python read_json.py
         
-      - name: Use JSON data
-        run: |
-          echo "JSON data: ${{ steps.read_json.outputs.data }}"
+     # - name: Use JSON data
+     #   run: |
+     #     echo "JSON data: ${{ steps.read_json.outputs.data }}"
           # Use the value in subsequent steps as needed
   #  env:
   # MY_VARIABLE: data
