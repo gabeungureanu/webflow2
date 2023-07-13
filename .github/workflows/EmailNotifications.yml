@@ -24,17 +24,19 @@ jobs:
         id: determine-event
         run: echo "::set-output name=event::${{ toJson(github.event_name) }}"
               
+        env: 
+           Emailidval: Emaildata
+              
       - name: Read JSON file
         id: read-json
         run: |
           python read_json.py
-        
+          print(Emaildata)
      # - name: Use JSON data
      #   run: |
      #     echo "JSON data: ${{ steps.read_json.outputs.data }}"
           # Use the value in subsequent steps as needed
-  #  env:
-  # MY_VARIABLE: data
+       
   #   - name: Use Data
   #     run: |
   #        echo "Recipients: ${{ steps.run-python-script.outputs.email_list }}"
