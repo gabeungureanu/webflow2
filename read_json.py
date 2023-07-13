@@ -5,7 +5,11 @@ file_path = '/home/runner/work/webflow2/webflow2/recipients.json'  # Replace wit
 try:
     with open(file_path, 'r') as json_file:
         json_data = json.load(json_file)
-        print(json_data)
+# Parse the JSON data
+parsed_data = json.loads(data)
+# Extract the email list
+email_list = [recipient['email'] for recipient in parsed_data['recipients']]
+
 except Exception as e:
     print(f"Error reading JSON file: {e}")
     exit(1)
