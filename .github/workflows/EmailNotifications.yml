@@ -20,7 +20,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
   
-               
       - name: Determine Event Type
         id: determine-event
         run: echo "::set-output name=event::${{ toJson(github.event_name) }}"
@@ -28,9 +27,9 @@ jobs:
       - name: Read recipients file
         id: read-recipients
         run: |
-           python read_json.py  
-        # recipients=$(cat $webflow2/recipients.json | jq -r '.[].email' | paste -sd ',' -)
-        # echo "::set-output name=recipients::$recipients"
+          # python read_json.py  
+          recipients=$(cat /home/runner/work/webflow2/webflow2/recipients.json | jq -r '.[].email' | paste -sd ',' -)
+          echo "::set-output name=recipients::$recipients"
          
       - name: Print Recipients
         run: |
