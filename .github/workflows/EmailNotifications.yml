@@ -29,7 +29,7 @@ jobs:
       - name: Read JSON file
         id: read-json
         run: |
-         file_path = '/home/runner/work/webflow2/webflow2/recipients.json' 
+         env: file_path = '/home/runner/work/webflow2/webflow2/recipients.json' 
          try:
          with open(file_path, 'r') as json_file:
           data = json.load(json_file)
