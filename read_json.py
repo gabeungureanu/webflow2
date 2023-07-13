@@ -1,17 +1,18 @@
 import json
 
-file_path = '/home/runner/work/webflow2/webflow2/recipients.json'  # Replace with the actual path to your JSON file
+# Sample JSON array with single property items
+json_data = '''
+[
+    {"email": "john@example.com"},
+    {"email": "jane@example.com"},
+    {"email": "bob@example.com"}
+]
+'''
 
-try:
-    with open(file_path, 'r') as json_file:
-        json_data = json.load(json_file)
+# Parse the JSON array
+data = json.loads(json_data)
 
-# Iterate through the array and concatenate values
-concatenated = ', '.join(recipients['email'] for recipients in json_data)
+# Concatenate single property values
+concatenated = ', '.join(recipient['email'] for recipient in data)
 
-# Remove the trailing comma and space
-concatenated = concatenated.rstrip(', ')
-        print(json.dumps(concatenated))  # Return the JSON data as a string
-except Exception as e:
-    print(f"Error reading JSON file: {e}")
-    exit(1)
+print(concatenated)
