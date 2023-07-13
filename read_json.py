@@ -5,7 +5,10 @@ file_path = '/home/runner/work/webflow2/webflow2/recipients.json'  # Replace wit
 try:
     with open(file_path, 'r') as json_file:
         json_data = json.load(json_file)
-         print(f"::set-output name=data::{json_data}")
+        recipients = data['json_data']
+         concatenated = ', '.join(recipient['email'] for recipient in recipients)
+        Emaildata = concatenated
+         #print(f"::set-output name=data::{json_data}")
         #print(json_data)
 except Exception as e:
     print(f"Error reading JSON file: {e}")
