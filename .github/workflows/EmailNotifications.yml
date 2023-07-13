@@ -27,9 +27,8 @@ jobs:
       - name: Read recipients file
         id: read-recipients
         run: |
-           python read_json.py  
-           
-           data = python read_json.py  
+           python read_json.py             
+           data = read_json.py  
            recipients = data['recipients']
            email_list = [recipient['email'] for recipient in recipients]
            
