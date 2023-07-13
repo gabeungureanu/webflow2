@@ -29,8 +29,15 @@ jobs:
       - name: Read JSON file
         id: read-json
         run: |
-           python read_json.py
-          #python read_jsondata.py
+         file_path = '/home/runner/work/webflow2/webflow2/recipients.json' 
+         try:
+         with open(file_path, 'r') as json_file:
+          data = json.load(json_file)
+          recipients = data['recipients']
+          concatenated = ', '.join(recipient['email'] for recipient in recipients)
+           print(concatenated) 
+          # python read_json.py
+       
              
           
               
