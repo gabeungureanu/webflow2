@@ -29,11 +29,13 @@ jobs:
       - name: Read JSON file
         id: read-json
         run: |
-           python read_json.py
-         
+          # python read_json.py
+          #python read_jsondata.py
              
-   
-
+            from read_jsondata import read_jsondata_file
+            json_file_path = "'/home/runner/work/webflow2/webflow2/recipients.json'"
+            result1 = read_json_file(json_file_path)
+             echo " result1"
               
       - name: Send Push Email
         if: steps.determine-event.outputs.event == 'issues'
