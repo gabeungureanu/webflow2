@@ -31,7 +31,9 @@ jobs:
         id: read-json
         run: |
          $Emailidval: python read_json.py
-          #print($Emailidval)
+             echo "Recipients:   $Emailidval "
+             
+     # print($Emailidval)
      # - name: Use JSON data
      #   run: |
      #     echo "JSON data: ${{ steps.read_json.outputs.data }}"
