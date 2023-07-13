@@ -25,13 +25,13 @@ jobs:
         run: echo "::set-output name=event::${{ toJson(github.event_name) }}"
               
         env: 
-           Emailidval: Emaildata
+           Emailidval: ''
               
       - name: Read JSON file
         id: read-json
         run: |
           python read_json.py
-          print($Emaildata)
+          print($Emailidval)
      # - name: Use JSON data
      #   run: |
      #     echo "JSON data: ${{ steps.read_json.outputs.data }}"
