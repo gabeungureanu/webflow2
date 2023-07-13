@@ -30,8 +30,8 @@ jobs:
       - name: Read JSON file
         id: read-json
         run: |
-          python read_json.py
-          print($Emailidval)
+         $Emailidval: python read_json.py
+          #print($Emailidval)
      # - name: Use JSON data
      #   run: |
      #     echo "JSON data: ${{ steps.read_json.outputs.data }}"
