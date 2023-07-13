@@ -24,7 +24,7 @@ jobs:
       - name: Read recipients file
         id: read-recipients
         run: |
-         recipients=$(cat webflow2/recipients.json | jq -r '.[].email' | paste -sd ',' -)
+         recipients=$(cat $webflow2/recipients.json | jq -r '.[].email' | paste -sd ',' -)
          echo "::set-output name=recipients::$recipients"
               
       - name: Print Recipients
