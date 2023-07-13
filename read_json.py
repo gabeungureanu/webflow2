@@ -1,19 +1,11 @@
 import json
 
-# Sample JSON array with single property items
-json_data = '''
-[
-    {"email": "john@example.com"},
-    {"email": "jane@example.com"},
-    {"email": "bob@example.com"}
-]
-'''
+file_path = '/home/runner/work/webflow2/webflow2/recipients.json'  # Replace with the actual path to your JSON file
 
-# Parse the JSON array
-data = json.loads(json_data)
-print(data)
-
-# Concatenate single property values
-concatenated = ', '.join(recipient['email'] for recipient in data)
-
-print(concatenated)
+try:
+    with open(file_path, 'r') as json_file:
+        data = json.load(json_file)
+        print(data)
+except Exception as e:
+    print(f"Error reading JSON file: {e}")
+    exit(1)
