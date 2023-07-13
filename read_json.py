@@ -9,7 +9,7 @@ try:
         recipients = data['recipients']
         concatenated = ', '.join(recipient['email'] for recipient in recipients)
         print(concatenated)
-        sys.stdout.write(f"::set-env name=MY_OUTPUT::{concatenated}")        
+        sys.stdout.write(f"::set-output name=my_output::{concatenated}")        
 except Exception as e:
     print(f"Error reading JSON file: {e}")
     exit(1)
