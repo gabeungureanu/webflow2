@@ -1,8 +1,9 @@
 {
-  "recipients": [
-    {
-      "name": "Recipient",
-      "email": "sandeep.agarwal@logixshapers.com"
-    }
-  ]
+  sandeep.agarwal@logixshapers.com,sandeepaga79@gmail.com
+  #"recipients": [
+  #  {
+   #   "name": "Recipient",
+   #   "email": "sandeep.agarwal@logixshapers.com"
+  #  }
+ # ]
 }
