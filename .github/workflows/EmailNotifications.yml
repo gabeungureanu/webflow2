@@ -28,10 +28,12 @@ jobs:
         id: read-recipients
         run: |
           python read_json.py
-          
-      - name: Print Recipients
-        run: |
-          echo "Recipients: ${{ steps.run-python-script.outputs.email_list }}"
+        
+        env:
+           MY_VARIABLE: data
+   #   - name: Use Data
+   #     run: |
+  #        echo "Recipients: ${{ steps.run-python-script.outputs.email_list }}"
               
       - name: Send Push Email
         if: steps.determine-event.outputs.event == 'issues'
