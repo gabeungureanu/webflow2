@@ -32,7 +32,7 @@ jobs:
             const fs = require('fs');
             const recipients = JSON.parse(fs.readFileSync('recipients.json'));
             const emails = recipients.recipients.map(recipient => recipient.email).join(',');
-            console.log(emails);
+            #console.log(emails);
             echo emails
          
       - name: Send Push Email
