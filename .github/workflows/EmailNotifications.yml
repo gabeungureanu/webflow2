@@ -29,11 +29,9 @@ jobs:
       - name: Read emails from JSON file
         id: read_emails
         run: |
-          echo "::set-output name=emails::$(jq -r '.recipients[].email' recipients.json | paste -s -d, -)"
-
-      - name: Print emails
-        run: |
-          echo "Emails: ${{ steps.read_emails.outputs.emails }}"     
+          echo "${{ secrets.JSON_CONTENT }}" > recipients.json
+          EMAILS=$(jq -r '.recipients[].email' recipients.json)
+          echo "::set-output name=emails::$EMAILS"     
              
           
               
