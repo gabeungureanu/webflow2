@@ -30,9 +30,9 @@ jobs:
         id: read_emails
         run: |
           EMAILS=$(jq -r '.recipients[].email' recipients.json)
-          echo "::set-output name=emails::$EMAILS"
+          echo $EMAILS > emails.txt
         env:
-          recipients_file: recipients.json  
+          recipients_file: recipients.json
              
           
               
