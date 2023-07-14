@@ -18,6 +18,7 @@ jobs:
     runs-on: ubuntu-latest   
     env:
       EMAILS: ${{ steps.read_emails.outputs.result }}
+      
     steps:   
       - name: Checkout repository
         uses: actions/checkout@v2
