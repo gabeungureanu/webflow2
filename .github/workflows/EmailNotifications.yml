@@ -33,7 +33,8 @@ jobs:
             const recipients = JSON.parse(fs.readFileSync('recipients.json'));
             const emails = recipients.recipients.map(recipient => recipient.email).join(',');
             console.log(emails);            
-         
+            core.setOutput('emails', emails);
+            
       - name: Send Push Email
         if: steps.determine-event.outputs.event == 'push'
         uses: dawidd6/action-send-mail@v3
