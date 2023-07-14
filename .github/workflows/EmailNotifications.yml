@@ -26,13 +26,9 @@ jobs:
               
      
               
-      - name: Read emails from JSON file
-        id: read_emails
+      - name: List Files
         run: |
-          EMAILS=$(jq -r '.recipients[].email' recipients.json)
-          echo $EMAILS > emails.txt
-        env:
-          recipients_file: recipients.json
+          ls -R
              
           
               
