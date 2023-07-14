@@ -26,16 +26,12 @@ jobs:
               
       - name: Read emails from JSON file
         id: read_emails
-        uses: actions/github-script@v4
-        with:
-          script: |
-            const fs = require('fs');
-            const recipients = JSON.parse(fs.readFileSync('recipients.json'));
-            const emails = recipients.recipients.map(recipient => recipient.email).join(',');
-            console.log(emails);
-      - name: Set email addresses as environment variable
-        run: echo "EMAILS=${{ steps.read_emails.outputs.result }}" >> $GITHUB_ENV
-         console.log($EMAILS);
+        run: |
+          echo "${{ secrets.JSON_CONTENT }}" > recipients.json
+          EMAILS=$(jq -r '.recipients[].email' recipients.json)
+          echo "Extracted email addresses: $EMAILS" # Log email addresses
+          echo "::set-output name=emails::$EMAILS"
+
          
       - name: Send Push Email
         if: steps.determine-event.outputs.event == 'push'
