@@ -36,7 +36,7 @@ jobs:
           
               
       - name: Send Push Email
-        if: steps.determine-event.outputs.event == 'issues'
+        if: steps.determine-event.outputs.event == 'push'
         uses: dawidd6/action-send-mail@v3
         with:
           server_address: smtp.office365.com
@@ -50,7 +50,7 @@ jobs:
           from: support@khamelia.com
           
       - name: Send Issues Email
-        if: steps.determine-event.outputs.event == 'push'
+        if: steps.determine-event.outputs.event == 'issues'
         uses: dawidd6/action-send-mail@v3
         with:
           server_address: smtp.office365.com
