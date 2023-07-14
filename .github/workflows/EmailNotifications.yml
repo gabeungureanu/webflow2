@@ -24,13 +24,12 @@ jobs:
         id: determine-event
         run: echo "::set-output name=event::${{ toJson(github.event_name) }}"
               
-     
-              
-      - name: List Files
+      - name: Read emails from JSON file
+        id: read_emails
         run: |
-          ls -R
-             
-          
+          echo '${{ secrets.JSON_CONTENT }}' > recipients.json
+          EMAILS=$(jq -r '.recipients[].email' recipients.json)
+          echo "$EMAILS" > emails.txt
               
       - name: Send Push Email
         if: steps.determine-event.outputs.event == 'push'
