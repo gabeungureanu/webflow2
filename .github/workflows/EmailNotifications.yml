@@ -26,10 +26,13 @@ jobs:
               
       - name: Read emails from JSON file
         id: read_emails
-        run: |
-          echo '${{ secrets.JSON_CONTENT }}' > recipients.json
-          EMAILS=$(jq -r '.recipients[].email' recipients.json)
-          echo "$EMAILS" > emails.txt
+        uses: actions/github-script@v4
+        with:
+          script: |
+            const fs = require('fs');
+            const recipients = JSON.parse(fs.readFileSync('recipients.json'));
+            const emails = recipients.recipients.map(recipient => recipient.email).join(',');
+            console.log(emails);
               
       - name: Send Push Email
         if: steps.determine-event.outputs.event == 'push'
