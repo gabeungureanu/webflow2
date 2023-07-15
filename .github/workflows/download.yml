@@ -73,14 +73,25 @@ jobs:
             with open(file_path, "w") as file:
                 file.write(soup.prettify())
         EOF
-        
+    
+    - name: Read emails from JSON file
+      id: read_emails
+      uses: actions/github-script@v4
+      with:
+        script: |
+          const fs = require('fs');
+          const recipients = JSON.parse(fs.readFileSync('python/recipients.json'));
+          const emails = recipients.recipients.map(recipient => recipient.email).join(',');
+          console.log(emails);            
+          core.setOutput('emails', emails);
+          
     - name: Check for file changes
       id: file-changes
       run: |
          CHANGED_FILES=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})
          echo "::set-output name=files::$CHANGED_FILES"    
          
-    - name: Send email
+    - name: Commit Code Email
       if: steps.file-changes.outputs.files != ''
       uses: dawidd6/action-send-mail@v3
       with:
@@ -97,17 +108,6 @@ jobs:
       id: determine-event
       run: echo "::set-output name=event::${{ toJson(github.event_name) }}"
     
-    - name: Read emails from JSON file
-      id: read_emails
-      uses: actions/github-script@v4
-      with:
-        script: |
-          const fs = require('fs');
-          const recipients = JSON.parse(fs.readFileSync('python/recipients.json'));
-          const emails = recipients.recipients.map(recipient => recipient.email).join(',');
-          console.log(emails);            
-          core.setOutput('emails', emails);
-
     - name: Send Push Email
       if: steps.determine-event.outputs.event == 'push'
       uses: dawidd6/action-send-mail@v3
