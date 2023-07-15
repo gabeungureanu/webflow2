@@ -73,10 +73,30 @@ jobs:
             with open(file_path, "w") as file:
                 file.write(soup.prettify())
         EOF
+        
+    - name: Check for file changes
+      id: file-changes
+      run: |
+         CHANGED_FILES=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})
+         echo "::set-output name=files::$CHANGED_FILES"    
+         
+    - name: Send email
+      if: steps.file-changes.outputs.files != ''
+      uses: dawidd6/action-send-mail@v3
+      with:
+        server_address: smtp-mail.outlook.com
+        port: 587
+        username: gabe.ungureanu@outlook.com
+        password: askGabe4e!
+        subject: "PushEvent Triggered: ${{ github.repository }}"          
+        body: PushEvent Triggered! A recent push to Safelite's GitHub repository from Webflow has been successfully completed.        
+        to:  ${{ steps.read_emails.outputs.emails }}
+        from: gabe.ungureanu@outlook.com
+        
     - name: Determine Event Type
       id: determine-event
       run: echo "::set-output name=event::${{ toJson(github.event_name) }}"
-
+    
     - name: Read emails from JSON file
       id: read_emails
       uses: actions/github-script@v4
