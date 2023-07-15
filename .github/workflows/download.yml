@@ -1,7 +1,17 @@
 name: Job Execution 
 on:
   workflow_dispatch:
-
+  push:
+    branches:
+      - main
+  issues:
+    types:
+      - opened 
+      - reopened
+  release:
+    types:
+      - published
+      
 jobs:
   download:
     runs-on: ubuntu-latest
@@ -63,7 +73,60 @@ jobs:
             with open(file_path, "w") as file:
                 file.write(soup.prettify())
         EOF
-        
+    - name: Determine Event Type
+      id: determine-event
+      run: echo "::set-output name=event::${{ toJson(github.event_name) }}"
+
+    - name: Read emails from JSON file
+      id: read_emails
+      uses: actions/github-script@v4
+      with:
+        script: |
+          const fs = require('fs');
+          const recipients = JSON.parse(fs.readFileSync('python/recipients.json'));
+          const emails = recipients.recipients.map(recipient => recipient.email).join(',');
+          console.log(emails);            
+          core.setOutput('emails', emails);
+
+    - name: Send Push Email
+      if: steps.determine-event.outputs.event == 'push'
+      uses: dawidd6/action-send-mail@v3
+      with:
+        server_address: smtp-mail.outlook.com
+        port: 587
+        username: gabe.ungureanu@outlook.com
+        password: askGabe4e!
+        subject: "PushEvent Triggered: ${{ github.repository }}"          
+        body: PushEvent Triggered! A recent push to Safelite's GitHub repository from Webflow has been successfully completed.        
+        to:  ${{ steps.read_emails.outputs.emails }}
+        from: gabe.ungureanu@outlook.com
+
+    - name: Send Issues Email
+      if: steps.determine-event.outputs.event == 'issues'
+      uses: dawidd6/action-send-mail@v3
+      with:
+        server_address: smtp-mail.outlook.com
+        port: 587
+        username: gabe.ungureanu@outlook.com
+        password: askGabe4e!
+        subject: "IssueEvent Triggered:${{ github.repository }}"          
+        body: IssueEvent Triggered! We've had some progress on the reported issues. Our team have been actively addressing them to enhance the overall user experience.
+        to: ${{ steps.read_emails.outputs.emails }}
+        from: gabe.ungureanu@outlook.comm
+
+    - name: Send Release Email
+      if: steps.determine-event.outputs.event == 'release'
+      uses: dawidd6/action-send-mail@v3
+      with:
+        server_address: smtp-mail.outlook.com
+        port: 587
+        username: gabe.ungureanu@outlook.com
+        password: askGabe4e!
+        subject: "ReleaseEvent Triggered: ${{ github.repository }}"          
+        body: ReleaseEvent Triggered! We are thrilled to announce a new release! The latest version is now available, packed with exciting features and enhancements.
+        to: ${{ steps.read_emails.outputs.emails }}
+        from: gabe.ungureanu@outlook.com
+    
     - name: Set Git user name and email
       run: |
        git config --global user.email "gabe.ungureanu@outlook.com"
@@ -72,9 +135,11 @@ jobs:
       run: |        
         rm -rf node_modules
         rsync -avW --delete-after --ignore-errors --exclude='.git' --exclude='.github' ./python/ ./ 
-        mkdir -p python && cp -r images.py python 
+        mkdir -p python && cp -r images.py python && cp -r recipients.json python
         git status
         git add .
-        git commit -m "html beautify"    
+        git commit -m "Webflow-Safelite Project"    
         git push origin main 
+        sleep 20
       continue-on-error: true  
+         
