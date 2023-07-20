@@ -168,7 +168,6 @@ jobs:
         mkdir -p python && cp -r images.py python && cp -r recipients.json python
         git status
         git add "/home/runner/work/webflow2/webflow2/github_logs.json"
-        git add .
         git commit -m "Webflow-Safelite Project"    
         git push origin main 
         sleep 20
