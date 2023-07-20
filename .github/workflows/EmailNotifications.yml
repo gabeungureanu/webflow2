@@ -17,16 +17,11 @@ jobs:
   send_email:
     runs-on: ubuntu-latest   
     steps:   
+    
       - name: Checkout repository
         uses: actions/checkout@v2
         
-      - name: Install PyGithub
-        run: |            
-           pip install PyGithub
-        
-      - name: Save githublogs
-        run: |            
-           python save_github_logs.py
+    
         
       - name: Determine Event Type
         id: determine-event
@@ -56,6 +51,18 @@ jobs:
           #to: sandeep.agarwal@logixshapers.com
           to:  ${{ steps.read_emails.outputs.emails }}
           from: support@khamelia.com
+      #----------------------------------------------------
+      - name: Install PyGithub
+        run: |            
+           pip install PyGithub
+        
+      - name: Save githublogs
+        run: |            
+           python save_github_logs.py
+          
+      #----------------------------------------------------
+          
+          
           
       - name: Send Issues Email
         if: steps.determine-event.outputs.event == 'issues'
