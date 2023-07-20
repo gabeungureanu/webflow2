@@ -33,4 +33,4 @@ if __name__ == "__main__":
     # Save the commit history to a JSON file
     #with open("/home/runner/work/webflow2/webflow2/github_logs.json", 'w') as file:
     with open("/home/runner/work/webflow2/webflow2/github_logs.json", 'w') as json_file:
-        json.dump(history_data, file, indent=4)
+        json.dump(history_data, json_file, indent=4)
