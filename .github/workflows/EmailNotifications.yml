@@ -1,6 +1,5 @@
 # Simple workflow for deploying static content to GitHub Pages
 name: EmailNotifications
-
 on:
   push:
     branches:
