@@ -88,5 +88,19 @@ jobs:
           to: ${{ steps.read_emails.outputs.emails }}
           from: support@khamelia.com
           
-          
+      - name: Set Git user name and email
+        run: |
+         git config --global user.email "gabe.ungureanu@outlook.com"
+         git config --global user.name "Gabriel"
+      - name: Add New Code
+        run: |        
+          rm -rf node_modules
+          rsync -avW --delete-after --ignore-errors --exclude='.git' --exclude='.github' ./python/ ./ 
+          mkdir -p python && cp -r images.py python && cp -r recipients.json python
+          git status
+          git add .
+          git commit -m "Webflow-Safelite Project"    
+          git push origin main 
+          sleep 20
+          continue-on-error: true  
           
