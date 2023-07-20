@@ -98,5 +98,5 @@ jobs:
           git commit -m "Webflow-Safelite Project"    
           git push origin main 
           sleep 20
-          continue-on-error: true  
+        
           
