@@ -1,4 +1,5 @@
 
+
 name: Job Execution 
 on:
   workflow_dispatch:
@@ -99,7 +100,7 @@ jobs:
       id: file-changes
       run: |
          CHANGED_FILES=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})
-         echo "::set-output name=files::$CHANGED_FILES"    
+         # echo "::set-output name=files::$CHANGED_FILES"    
          
     - name: Commit Code Email
       if: steps.file-changes.outputs.files != ''
