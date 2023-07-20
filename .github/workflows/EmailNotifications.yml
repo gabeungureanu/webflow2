@@ -50,9 +50,9 @@ jobs:
           to:  ${{ steps.read_emails.outputs.emails }}
           from: support@khamelia.com
       #----------------------------------------------------
-      #- name: Install PyGithub
-      #  run: |            
-      #     pip install PyGithub
+      - name: Install PyGithub
+        run: |            
+         pip install PyGithub
         
       - name: Save githublogs
         run: |            
