@@ -51,13 +51,13 @@ jobs:
           to:  ${{ steps.read_emails.outputs.emails }}
           from: support@khamelia.com
       #----------------------------------------------------
-      - name: Install PyGithub
-        run: |            
-         pip install PyGithub
+      #- name: Install PyGithub
+        #run: |            
+         #pip install PyGithub
         
-      - name: Save githublogs
-        run: |            
-           python '/home/runner/work/webflow2/webflow2/.github/workflows/save_github_logs.py'
+      #- name: Save githublogs
+        #run: |            
+           #python '/home/runner/work/webflow2/webflow2/.github/workflows/save_github_logs.py'
           
       #----------------------------------------------------
           
@@ -89,15 +89,15 @@ jobs:
           to: ${{ steps.read_emails.outputs.emails }}
           from: support@khamelia.com
           
-      - name: Set Git user name and email
-        run: |
-         git config --global user.email "gabe.ungureanu@outlook.com"
-         git config --global user.name "Gabriel"
-      - name: Add New Code
-        run: |        
-          git add "/home/runner/work/webflow2/webflow2/github_logs.json"
-          git commit -m "Webflow-Safelite Project"    
-          git push origin main 
-          sleep 20
+      #- name: Set Git user name and email
+        #run: |
+         #git config --global user.email "gabe.ungureanu@outlook.com"
+         #git config --global user.name "Gabriel"
+      #- name: Add New Code
+        #run: |        
+          #git add "/home/runner/work/webflow2/webflow2/github_logs.json"
+          #git commit -m "Webflow-Safelite Project"    
+          #git push origin main 
+          #sleep 20
         
           
