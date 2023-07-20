@@ -1,8 +1,8 @@
 {
   
-            "sha": commit.sha,
-            "author": commit.author.login if commit.author else "Unknown",
-            "message": commit.commit.message,
-            "date": commit.commit.author.date.strftime("%Y-%m-%d %H:%M:%S"),
+            "sha": "commit.sha",
+            "author": "Sandeep",
+            "message": "Data commited",
+            "date": "12-12-2022"
         
 }
