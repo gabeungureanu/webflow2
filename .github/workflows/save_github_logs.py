@@ -29,7 +29,7 @@ if __name__ == "__main__":
     repository = "webflow2"
 
     history_data = get_github_logs(username, repository)
-
+     print (history_data)
     # Save the commit history to a JSON file
     with open("/home/runner/work/webflow2/webflow2/github_logs.json", 'w') as file:
         json.dump(history_data, file, indent=4)
