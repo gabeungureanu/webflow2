@@ -57,7 +57,7 @@ jobs:
         
       - name: Save githublogs
         run: |            
-           python ./save_github_logs.py
+           python ./workflows/save_github_logs.py
           
       #----------------------------------------------------
           
