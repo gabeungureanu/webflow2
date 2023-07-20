@@ -56,7 +56,7 @@ jobs:
         
       - name: Save githublogs
         run: |            
-           python /gabeungureanu/webflow2/blob/main/.github/workflows/save_github_logs.py
+           python '/home/runner/work/webflow2/webflow2/workflows/save_github_logs.py'
           
       #----------------------------------------------------
           
