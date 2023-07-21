@@ -55,6 +55,7 @@ jobs:
       - name: Install PyGithub
         run: |            
          pip install PyGithub
+         pip install requests
         
       - name: Save githublogs
         run: |            
