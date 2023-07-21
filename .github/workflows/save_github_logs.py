@@ -3,8 +3,8 @@ from github import Github
 
 def get_github_logs(username, repository):
     # Initialize the GitHub API client
-    #access_token = "YOUR_GITHUB_ACCESS_TOKEN"
-    #g = Github(access_token)
+    # access_token = "YOUR_GITHUB_ACCESS_TOKEN"
+    # g = Github(access_token)
      g = Github()
 
     # Get the specified repository
