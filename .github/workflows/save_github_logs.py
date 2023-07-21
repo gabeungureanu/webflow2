@@ -3,7 +3,7 @@ from github import Github
 
 def get_github_logs(username, repository):
     # Initialize the GitHub API client
-    g = Github("")
+    g = Github("asdasd")
  
     # Get the specified repository
     repo = g.get_repo(f"{username}/{repository}")
