@@ -10,7 +10,7 @@ def get_github_logs(username, repository):
 
     # Get all commits from the repository
     commits = repo.get_commits()
-
+ 
     # Convert the commit history to a list of dictionaries
     commit_history = []
     for commit in commits:
