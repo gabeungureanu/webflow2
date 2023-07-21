@@ -19,6 +19,11 @@ def get_github_logs(username, repository):
             "author": commit.author.login if commit.author else "Unknown",
             "message": commit.commit.message,
             "date": commit.commit.author.date.strftime("%Y-%m-%d %H:%M:%S"),
+            #------------------------------------
+            "additions": commit.stats.additions,
+            "deletions": commit.stats.deletions,
+            "total_changes": commit.stats.total,
+            #------------------------------------
         }
         commit_history.append(commit_data)
 
