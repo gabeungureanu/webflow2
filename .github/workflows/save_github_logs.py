@@ -22,7 +22,7 @@ def get_github_logs(username, repository):
             #------------------------------------
             #"additions": commit.stats.additions,
             #"deletions": commit.stats.deletions,
-            #"total_changes": commit.stats.total,
+            "total_changes": commit.stats.total,
             #------------------------------------
         }
         commit_history.append(commit_data)
