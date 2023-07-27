@@ -16,8 +16,11 @@ def add_data_to_audit_log(new_data):
 
     # Step 1: Read the existing JSON data from the file (if it exists)
     try:
-        with open(file_path, 'r') as json_file:
-            existing_data = json.load(json_file)
+        if os.path.exists(file_path):
+            with open(file_path, 'r') as json_file:
+                existing_data = json.load(json_file)
+        else:
+            existing_data = []
     except FileNotFoundError:
         existing_data = []
 
