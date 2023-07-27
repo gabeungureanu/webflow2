@@ -22,16 +22,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
                 
-      - name: Read existing JSON data
-        id: read_json
-        run: echo ::set-output name=data::$(cat audit_log.json)
-
-      - name: Create new JSON data
-        id: create_new_data
-        run: echo '{"event":"new_event", "timestamp":"2023-07-27T12:34:56Z", "details":"Some details about the new event"}' | jq --argjson existingData "${{ steps.read_json.outputs.data }}" '. as $new | $existingData + [$new[0]]' > audit_log.json
-
-      - name: Replace the original JSON file with the new data
-        run: mv audit_log.json audit_log.json
+      - name: Create JSON file
+        run: echo '{"event":"some_event", "timestamp":"2023-07-27T12:34:56Z"}' > audit_log.json
 
       - name: Commit and push changes
         run: |
@@ -39,7 +31,7 @@ jobs:
           git config user.email "actions@github.com"
           git add audit_log.json
           git commit -m "Update audit log"
-          git push 
+          git push
                 
       - name: Determine Event Type
         id: determine-event
