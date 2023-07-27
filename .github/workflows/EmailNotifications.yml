@@ -66,15 +66,15 @@ jobs:
       - name: Install PyGithub
         run: |            
          pip install PyGithub
-         pip install requests
-        
+         pip install requests        
       - name: Save githublogs
         run: |            
            python '/home/runner/work/webflow2/webflow2/.github/workflows/save_github_logs.py'
-          
       #----------------------------------------------------
-          
-          
+      - name: Save auditblogs
+        run: |            
+           python '/home/runner/work/webflow2/webflow2/.github/workflows/save_github_auditlogs.py'      
+      #----------------------------------------------------
           
       - name: Send Issues Email
         if: steps.determine-event.outputs.event == 'issues'
