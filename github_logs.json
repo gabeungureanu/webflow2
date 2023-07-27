@@ -1,5 +1,17 @@
 [
     {
+        "sha": "07015eb40ecd05a230e45f92b6147ad6008fdb0a",
+        "author": "gabeungureanu",
+        "message": "Update download.yml",
+        "date": "2023-07-27 10:35:04"
+    },
+    {
+        "sha": "10d2524505922ccee8030aa8bf13af97ac4dab70",
+        "author": "gabeungureanu",
+        "message": "Webflow-Safelite Project",
+        "date": "2023-07-27 10:33:54"
+    },
+    {
         "sha": "34906b4f3df985459b54f5f6531162447ff345f8",
         "author": "gabeungureanu",
         "message": "Update download.yml",
