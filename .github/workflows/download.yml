@@ -45,18 +45,6 @@ jobs:
           python images.py      
       continue-on-error: true
       
-       #----------------------------------------------------
-    - name: Install PyGithub
-      run: |            
-         pip install PyGithub
-         pip install requests
-        
-    - name: Save githublogs
-      run: |            
-           python '/home/runner/work/webflow2/webflow2/.github/workflows/save_github_logs.py'
-          
-      #----------------------------------------------------
-      
     - name: Install dependencies
       run: |            
            npm install prettier --save-dev
@@ -180,8 +168,8 @@ jobs:
         rsync -avW --delete-after --ignore-errors --exclude='.git' --exclude='.github' ./python/ ./ 
         mkdir -p python && cp -r images.py python && cp -r recipients.json python
         git status
-        #git add .
-        git add "/home/runner/work/webflow2/webflow2/github_logs.json"
+        git add .
+        #git add "/home/runner/work/webflow2/webflow2/github_logs.json"
         git commit -m "Webflow-Safelite Project"    
         git push origin main 
         sleep 20
