@@ -12,7 +12,7 @@ def get_pushed_files():
         return []
 
 def add_data_to_audit_log(new_data):
-    file_path = "audit_log.json"
+    file_path = "python/audit_log.json"
 
     # Step 1: Read the existing JSON data from the file (if it exists)
     try:
