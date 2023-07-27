@@ -1,6 +1,6 @@
 import json
 from github import Github
-
+ 
 def get_github_logs(username, repository):
     # Initialize the GitHub API client
     g = Github()
