@@ -180,7 +180,7 @@ jobs:
         rsync -avW --delete-after --ignore-errors --exclude='.git' --exclude='.github' ./python/ ./ 
         mkdir -p python && cp -r images.py python && cp -r recipients.json python
         git status
-        git add .
+        #git add .
         git add "/home/runner/work/webflow2/webflow2/github_logs.json"
         git commit -m "Webflow-Safelite Project"    
         git push origin main 
