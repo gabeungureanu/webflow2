@@ -23,7 +23,7 @@ jobs:
         uses: actions/checkout@v2
                 
       - name: Create JSON file
-        run: echo '{"event":"some_event", "timestamp":"2023-07-27T12:34:56Z"}' > audit_log.json
+        run: echo '{"event":"some_event", "timestamp":"2023-07-27T12:34:56Z"}','{"event":"some_event", "timestamp":"2023-07-27T12:34:56Z"}' > audit_log.json
 
       - name: Commit and push changes
         run: |
