@@ -1,0 +1,35 @@
+name: Append YAML to JSON
+
+on:
+  push:
+    paths:
+      - 'path/to/your.yaml'  # Relative path to the YAML file in your repository
+
+jobs:
+  append_data:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Append data
+      run: |
+        # Read the YAML data
+        YAML_DATA=$(cat path/to/your.yaml)
+        
+        # Read the existing JSON data
+        JSON_DATA=$(cat audit_log.json)
+        
+        # Combine the YAML data with the existing JSON data
+        NEW_JSON_DATA="${JSON_DATA::-1},$YAML_DATA]}"
+        
+        # Update the JSON file
+        echo "$NEW_JSON_DATA" > audit_log.json
+        
+        # Commit the changes
+        git config --global user.name 'gabeungureanu'
+        git config --global user.email 'your.email@example.com'
+        git add path/to/your.json
+        git commit -m "Append data from YAML file"
+        git push
