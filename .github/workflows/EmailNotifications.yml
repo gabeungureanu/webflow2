@@ -69,7 +69,8 @@ jobs:
          pip install requests        
       - name: Save githublogs
         run: |            
-           python '/home/runner/work/webflow2/webflow2/.github/workflows/save_github_logs.py'
+           #python '/home/runner/work/webflow2/webflow2/.github/workflows/save_github_logs.py'
+           python '/home/runner/work/webflow2/webflow2/.github/workflows/save_githublogs_new.py'
       #----------------------------------------------------
       - name: Save auditblogs
         run: |            
