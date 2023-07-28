@@ -25,19 +25,7 @@ jobs:
       - name: Determine Event Type
         id: determine-event
         run: echo "::set-output name=event::${{ toJson(github.event_name) }}"
-              
-      - name: Create JSON file
-        run: echo '{"event":${{ toJson(github.event_name) }}, "timestamp":${{datetime.datetime.utcnow().isoformat()}}' > python/audit_log.json
-
-      - name: Commit and push changes
-        run: |
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
-          git add python/audit_log.json
-          git commit -m "Update audit log"
-          git push
-                
-              
+             
       - name: Read emails from JSON file
         id: read_emails
         uses: actions/github-script@v4
