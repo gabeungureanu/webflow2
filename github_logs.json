@@ -1,5 +1,23 @@
 [
     {
+        "sha": "4f483ef34429e34953635c56d70a4d03bf289d91",
+        "author": "gabeungureanu",
+        "message": "Update EmailNotifications.yml",
+        "date": "2023-07-28 14:17:48"
+    },
+    {
+        "sha": "1e37f2538147ba88af18a4a3922b77172001eafe",
+        "author": "gabeungureanu",
+        "message": "Update EmailNotifications.yml",
+        "date": "2023-07-28 14:11:29"
+    },
+    {
+        "sha": "745d8235259ff42cbf012cd96c9fb7b8d145c791",
+        "author": "gabeungureanu",
+        "message": "Webflow-Safelite Project",
+        "date": "2023-07-28 14:09:49"
+    },
+    {
         "sha": "1d7b7271b0748e018d0a4c4ab090d54608f32144",
         "author": "gabeungureanu",
         "message": "Update EmailNotifications.yml",
