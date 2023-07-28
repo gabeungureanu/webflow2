@@ -22,16 +22,16 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
                 
-      #- name: Create JSON file
-      #  run: echo '{"event":${{ toJson(github.event_name) }}, "timestamp":${{datetime.datetime.utcnow().isoformat()}}' > python/audit_log.json
+      - name: Create JSON file
+        run: echo '{"event":${{ toJson(github.event_name) }}, "timestamp":${{datetime.datetime.utcnow().isoformat()}}' > python/audit_log.json
 
-      #- name: Commit and push changes
-      #  run: |
-      #    git config user.name "GitHub Actions"
-      #    git config user.email "actions@github.com"
-      #    git add python/audit_log.json
-      #    git commit -m "Update audit log"
-      #    git push
+      - name: Commit and push changes
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add python/audit_log.json
+          git commit -m "Update audit log"
+          git push
                 
       - name: Determine Event Type
         id: determine-event
