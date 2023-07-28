@@ -13,7 +13,6 @@ import os
 
 def add_data_to_audit_log(new_data):
     file_path = "python/audit_log.json"
-    print(file_path)
     # Step 1: Read the existing JSON data from the file (if it exists)
     try:
         if os.path.exists(file_path):
