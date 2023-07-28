@@ -1,5 +1,17 @@
 [
     {
+        "sha": "dfbae59fc88d55db6fb6daf33b781eaf2cdf6e61",
+        "author": "gabeungureanu",
+        "message": "Create append_yaml_to_json.yml",
+        "date": "2023-07-28 13:51:12"
+    },
+    {
+        "sha": "183ddf5e2ae53a0cc5b0f9886121d8912b88ac28",
+        "author": "gabeungureanu",
+        "message": "Webflow-Safelite Project",
+        "date": "2023-07-28 09:25:02"
+    },
+    {
         "sha": "0b91bc9d0fea02f6130429c6413237b2f2124394",
         "author": "gabeungureanu",
         "message": "Update EmailNotifications.yml",
