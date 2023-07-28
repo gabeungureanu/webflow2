@@ -69,14 +69,9 @@ jobs:
          pip install requests        
       - name: Save githublogs
         run: |            
-           #python '/home/runner/work/webflow2/webflow2/.github/workflows/save_github_logs.py'
-           python '/home/runner/work/webflow2/webflow2/.github/workflows/save_githublogs_new.py'
+           python '/home/runner/work/webflow2/webflow2/.github/workflows/save_github_logs.py'
       #----------------------------------------------------
-      - name: Save auditblogs
-        run: |            
-           python '/home/runner/work/webflow2/webflow2/.github/workflows/save_github_auditlogs.py'      
-      #----------------------------------------------------
-          
+               
       - name: Send Issues Email
         if: steps.determine-event.outputs.event == 'issues'
         uses: dawidd6/action-send-mail@v3
