@@ -36,11 +36,11 @@ jobs:
           
           # Create the JSON object for the push event
           audit_log="{
-          "timestamp": "${timestamp}", 
-          "repository": "${repository}",
-          "release_manager": "${pusher}", 
-          "commit_hash": "${commit_hash}",
-          "commit_message": "${commit_message}"
+          "timestamp": "${timestamp}"\n, 
+          "repository": "${repository}\n",
+          "release_manager": "${pusher}\n", 
+          "commit_hash": "${commit_hash}\n",
+          "commit_message": "${commit_message}\n"
           },"
           
           # Append the JSON object to the audit_log.json file
