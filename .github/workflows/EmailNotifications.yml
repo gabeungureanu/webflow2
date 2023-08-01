@@ -42,9 +42,7 @@ jobs:
             echo "[$audit_log]" > audit_log.json
           else
             # Beautify the JSON file and append the new JSON object to the array
-            jq --slurp '.' audit_log.json > audit_log_temp.json
-            echo ",$audit_log]" >> audit_log_temp.json
-            mv audit_log_temp.json audit_log.json
+            python -c "import json; data=json.loads(open('audit_log.json').read()); data.append(json.loads('''$audit_log''')); open('audit_log.json', 'w').write(json.dumps(data, indent=2))"
           fi
                     
           # Append the JSON object to the audit_log.json file 
