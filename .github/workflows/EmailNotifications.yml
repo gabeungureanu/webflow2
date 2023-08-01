@@ -46,7 +46,7 @@ jobs:
           cat audit_log.json
      #-----------------------------------------------------------------------------        
      
-      - name: Update audit log        
+      - name: Formate audit log        
         run:  |
          python -m json.tool audit_log.json > audit_log_beautified.json
      
