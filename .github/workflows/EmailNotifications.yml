@@ -45,6 +45,11 @@ jobs:
           # Display the updated audit log (optional)
           cat audit_log.json
      #-----------------------------------------------------------------------------        
+     
+      - name: Update audit log        
+        run:  |
+         python -m json.tool audit_log.json > audit_log_beautified.json
+     
       - name: Read emails from JSON file
         id: read_emails
         uses: actions/github-script@v4
