@@ -118,7 +118,7 @@ jobs:
          git config --global user.name "Gabriel"
       - name: Add New Code
         run: |        
-          git add "/home/runner/work/webflow2/webflow2/audit_log.json"
+          git add "/home/runner/work/webflow2/webflow2/.github/workflows/audit_log.json"
           #git add "/home/runner/work/webflow2/webflow2/github_logs.json"
           git commit -m "Webflow-Safelite Project"    
           git push origin main 
