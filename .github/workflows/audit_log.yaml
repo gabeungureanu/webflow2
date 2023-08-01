@@ -3,7 +3,7 @@ name: Audit Log
 on:
   push:
     branches:
-      - main # Replace 'main' with your default branch name if it's different
+      - main # Replace 'main' with your default branch name if it's different 
 
 jobs:
   update_audit_log:
