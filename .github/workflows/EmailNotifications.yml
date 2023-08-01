@@ -48,7 +48,7 @@ jobs:
      
       - name: Formate audit log        
         run:  |
-         python -m json.tool audit_log.json > audit_log_beautified.json
+         python -m json.tool audit_log.json > audit_log.json
      
       - name: Read emails from JSON file
         id: read_emails
