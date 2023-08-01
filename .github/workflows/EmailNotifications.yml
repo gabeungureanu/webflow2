@@ -41,10 +41,8 @@ jobs:
           if [ ! -f "audit_log.json" ]; then
             echo "[$audit_log]" > audit_log.json
           else
-            # Beautify the JSON file and append the new JSON object to the array
-            jq --slurp '.' audit_log.json > audit_log_temp.json
-            echo ", $audit_log" >> audit_log_temp.json
-            mv audit_log_temp.json audit_log.json 
+            # Use Python to append the new JSON object to the existing array
+            python -c "import json; with open('audit_log.json') as f: data = json.load(f); data.append(json.loads('''$audit_log''')); open('audit_log.json', 'w').write(json.dumps(data, indent=2))"
           fi
           
           # Display the updated audit log (optional)
