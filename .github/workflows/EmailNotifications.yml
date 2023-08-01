@@ -44,7 +44,6 @@ jobs:
           
           # Display the updated audit log (optional)
           cat python/audit_log.json
-
      #-----------------------------------------------------------------------------             
           
       - name: Read emails from JSON file
