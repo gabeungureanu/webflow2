@@ -43,20 +43,7 @@ jobs:
           #mv audit_log_temp.json audit_log.json
           
           # Display the updated audit log (optional)
-          cat audit_log.json
-          
-      - name: Install jq (JSON processor)
-        run: sudo apt-get install jq
-
-      - name: Beautify audit log
-        run: |
-          # Beautify the JSON file in-place using jq
-          jq -S . audit_log.json > temp_audit_log.json
-          mv temp_audit_log.json audit_log.json
-
-        # Display the updated audit log (optional)
-      - name: Display beautified log
-        run: cat audit_log.json
+          cat audit_log.json  
      #-----------------------------------------------------------------------------             
           
       - name: Read emails from JSON file
