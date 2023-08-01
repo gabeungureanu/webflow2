@@ -50,16 +50,13 @@ jobs:
 
       - name: Beautify audit log
         run: |
-          # Beautify the JSON file using jq
-          jq . audit_log.json > audit_log_beautified.json
+          # Beautify the JSON file in-place using jq
+          jq -S . audit_log.json > temp_audit_log.json
+          mv temp_audit_log.json audit_log.json
 
         # Display the updated audit log (optional)
       - name: Display beautified log
-        run: cat audit_log_beautified.json
-
-        # Move the beautified file back to the original name
-      - name: Move beautified log to original file
-        run: mv audit_log_beautified.json audit_log.json
+        run: cat audit_log.json
      #-----------------------------------------------------------------------------             
           
       - name: Read emails from JSON file
