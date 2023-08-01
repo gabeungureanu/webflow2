@@ -44,7 +44,7 @@ jobs:
             # Beautify the JSON file and append the new JSON object to the array
             jq --slurp '.' audit_log.json > audit_log_temp.json
             echo ", $audit_log" >> audit_log_temp.json
-            mv audit_log_temp.json audit_log.json
+            mv audit_log_temp.json audit_log.json 
           fi
           
           # Display the updated audit log (optional)
