@@ -43,7 +43,7 @@ jobs:
           #mv audit_log_temp.json audit_log.json
           
           # Display the updated audit log (optional)
-          cat audit_log.json  
+          cat /home/runner/work/webflow2/webflow2/.github/workflows/audit_log.json  
      #-----------------------------------------------------------------------------             
           
       - name: Read emails from JSON file
