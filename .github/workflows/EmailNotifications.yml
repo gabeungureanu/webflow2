@@ -38,12 +38,12 @@ jobs:
           audit_log="{\"timestamp\": \"${timestamp}\", \"repository\": \"${repository}\",\"release_manager\": \"${pusher}\", \"commit_hash\": \"${commit_hash}\", \"commit_message\": \"${commit_message}\"},"
           
           # Append the JSON object to the audit_log.json file 
-          echo $audit_log >> /home/runner/work/webflow2/webflow2/.github/workflows/audit_log.json 
+          echo $audit_log >> '/home/runner/work/webflow2/webflow2/.github/workflows/audit_log.json' 
           #echo $audit_log >> audit_log_temp.json
           #mv audit_log_temp.json audit_log.json
           
           # Display the updated audit log (optional)
-          cat /home/runner/work/webflow2/webflow2/.github/workflows/audit_log.json  
+          cat '/home/runner/work/webflow2/webflow2/.github/workflows/audit_log.json'
      #-----------------------------------------------------------------------------             
           
       - name: Read emails from JSON file
