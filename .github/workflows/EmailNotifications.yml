@@ -99,7 +99,7 @@ jobs:
           to: ${{ steps.read_emails.outputs.emails }}
           from: support@khamelia.com
           
-      - name: Send Release Email
+      - name: Send Release Email 
         if: steps.determine-event.outputs.event == 'release'
         uses: dawidd6/action-send-mail@v3
         with:
