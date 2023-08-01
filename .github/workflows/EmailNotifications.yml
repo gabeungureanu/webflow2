@@ -44,12 +44,24 @@ jobs:
           
           # Display the updated audit log (optional)
           cat audit_log.json
-     #-----------------------------------------------------------------------------        
-     
-      - name: Formate audit log        
-        run:  |
-         python -m json.tool audit_log.json > audit_log.json
-     
+          
+      - name: Install jq (JSON processor)
+        run: sudo apt-get install jq
+
+      - name: Beautify audit log
+        run: |
+          # Beautify the JSON file using jq
+          jq . audit_log.json > audit_log_beautified.json
+
+        # Display the updated audit log (optional)
+      - name: Display beautified log
+        run: cat audit_log_beautified.json
+
+        # Move the beautified file back to the original name
+      - name: Move beautified log to original file
+        run: mv audit_log_beautified.json audit_log.json
+     #-----------------------------------------------------------------------------             
+          
       - name: Read emails from JSON file
         id: read_emails
         uses: actions/github-script@v4
