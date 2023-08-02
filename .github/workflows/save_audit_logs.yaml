@@ -43,8 +43,8 @@ jobs:
       # Commit and push the updated audit log back to the repository
       - name: Commit and push changes
         run: |
-          git config user.name "Audit Log Bot"
-          git config user.email "auditlog@example.com"
+          git config --global user.email "gabe.ungureanu@outlook.com"
+          git config --global user.name "Gabriel"
           git add audit_log.json
           git commit -m "Update audit log - ${{ github.sha }}"
           git push origin main
