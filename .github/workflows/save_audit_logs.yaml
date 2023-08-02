@@ -13,7 +13,10 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v2
 
-      - name: Update audit log 
+      - name: Initialize audit_log.json with an empty JSON array
+        run: echo '[]' > audit_log.json
+
+      - name: Update audit log
         run: |
           # Get the current timestamp and other relevant data
           timestamp=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
@@ -25,8 +28,14 @@ jobs:
           # Create the JSON object for the push event
           audit_log="{\"timestamp\": \"${timestamp}\", \"repository\": \"${repository}\", \"release_manager\": \"${pusher}\", \"commit_hash\": \"${commit_hash}\", \"commit_message\": \"${commit_message}\"}"
 
-          # Use Python to format and store the audit_log object in audit_log.json
-          python -c "import json; data = json.loads('''[$audit_log]'''); open('audit_log.json', 'w').write(json.dumps(data, indent=2))"
+          # Use Python to read existing data from audit_log.json
+          existing_data=$(cat audit_log.json)
+          
+          # Append the new audit log object to the existing JSON array
+          updated_data=$(echo "$existing_data" | jq --argjson new_log "$audit_log" '. + [$new_log]')
+          
+          # Write the updated JSON array back to audit_log.json
+          echo "$updated_data" > audit_log.json
 
           # Display the updated audit log (optional)
           cat audit_log.json
