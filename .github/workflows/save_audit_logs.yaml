@@ -13,7 +13,7 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v2
 
-      - name: Update audit log
+      - name: Update audit log 
         run: |
           # Get the current timestamp and other relevant data
           timestamp=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
